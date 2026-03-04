@@ -1,0 +1,176 @@
+// ============================================
+// GymStack — Header & Bottom Navigation
+// ============================================
+
+// Top page header
+.page-header {
+  padding: $space-lg $space-md $space-md;
+  position: sticky;
+  top: 0;
+  z-index: $z-nav - 1;
+  background: $bg-primary;
+
+  // Frosted glass blur effect
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(18, 18, 18, 0.9);
+  border-bottom: 1px solid $border-subtle;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-md;
+  }
+
+  &__back {
+    width: 36px;
+    height: 36px;
+    border-radius: $border-radius-sm;
+    background: $surface-card;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $border-subtle;
+    flex-shrink: 0;
+    transition: all $transition-base;
+    color: $text-main;
+
+    &:hover {
+      border-color: $accent-neon;
+      color: $accent-neon;
+    }
+  }
+
+  &__logo {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    span {
+      color: $accent-neon;
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $space-sm;
+  }
+}
+
+// Bottom tab navigation
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: $max-width;
+  height: $nav-height;
+  background: rgba(18, 18, 18, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid $border-subtle;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: $z-nav;
+  padding: 0 $space-md;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: $space-sm $space-md;
+    border-radius: $border-radius-sm;
+    transition: all $transition-base;
+    color: $text-faint;
+    min-width: 60px;
+    position: relative;
+
+    &--active {
+      color: $accent-neon;
+
+      .bottom-nav__label {
+        color: $accent-neon;
+      }
+
+      // Active indicator dot
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 4px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: $accent-neon;
+        box-shadow: 0 0 6px $accent-neon;
+      }
+    }
+
+    &:hover:not(&--active) {
+      color: $text-muted;
+    }
+  }
+
+  &__icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: inherit;
+  }
+}
+
+// Toast notification
+.toast {
+  position: fixed;
+  bottom: calc($nav-height + $space-md);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: $surface-raised;
+  border: 1px solid $border-subtle;
+  border-radius: $border-radius;
+  padding: 12px $space-lg;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: $z-toast;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+
+  &--visible {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  &--success {
+    border-color: $border-active;
+    color: $accent-neon;
+  }
+
+  &--error {
+    border-color: rgba(255, 62, 62, 0.4);
+    color: $accent-action;
+  }
+}

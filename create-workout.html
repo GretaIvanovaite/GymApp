@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GymStack — Build and schedule a workout" />
+  <title>GymStack — Create Workout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- Top Header -->
+  <header class="page-header" role="banner">
+    <div class="page-header__inner">
+      <a href="index.html" class="page-header__back" aria-label="Back to dashboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15,18 9,12 15,6"/>
+        </svg>
+      </a>
+      <h1 class="page-header__title">Build Workout</h1>
+      <div style="width: 36px;"></div><!-- spacer -->
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-content" id="main-content">
+
+    <form id="workout-form" novalidate>
+
+      <!-- ── Workout Name ──────────────────────────────────────────────── -->
+      <div class="form-group">
+        <label class="form-label" for="workout-name">Workout Name <span aria-hidden="true" style="color:#FF3E3E">*</span></label>
+        <input
+          class="form-control"
+          type="text"
+          id="workout-name"
+          name="name"
+          placeholder="e.g. Push Day, Leg Day, Full Body…"
+          required
+          autocomplete="off"
+          maxlength="60"
+        />
+      </div>
+
+      <!-- ── Date Picker ───────────────────────────────────────────────── -->
+      <div class="form-group">
+        <span class="form-label" id="date-label">Scheduled Date</span>
+        <div
+          class="workout-builder__date-strip"
+          id="date-strip"
+          role="button"
+          tabindex="0"
+          aria-labelledby="date-label"
+          aria-describedby="date-display"
+        >
+          <span class="workout-builder__date-strip-icon" aria-hidden="true">📅</span>
+          <div>
+            <div class="workout-builder__date-strip-label">Training Date</div>
+            <div class="workout-builder__date-strip-value" id="date-display">Today</div>
+          </div>
+          <!-- Native date input hidden but accessible -->
+          <input
+            type="date"
+            id="workout-date"
+            name="date"
+            aria-label="Select workout date"
+            style="position:absolute; opacity:0; pointer-events:none; width:0; height:0;"
+            required
+          />
+        </div>
+      </div>
+
+      <!-- ── Exercise Selection ────────────────────────────────────────── -->
+      <section aria-label="Select exercises">
+        <div class="section__header" style="margin-bottom: 12px;">
+          <h2 class="section__title">
+            Select Exercises
+            <span id="selected-count" style="color:#00FFCC; margin-left:6px;">0</span>
+            selected
+          </h2>
+          <a href="add-exercise.html" class="section__action" aria-label="Add a new exercise">+ New</a>
+        </div>
+
+        <div
+          class="workout-builder__exercise-list"
+          id="exercise-pick-list"
+          role="group"
+          aria-label="Exercise selection list"
+        >
+          <!-- Rendered by workout-player.js -->
+        </div>
+      </section>
+
+      <!-- ── Exercise Order ────────────────────────────────────────────── -->
+      <section style="margin-top: 32px;" aria-label="Exercise order">
+        <div class="section__header" style="margin-bottom: 12px;">
+          <h2 class="section__title">Exercise Order</h2>
+        </div>
+
+        <!-- Empty state -->
+        <div id="order-empty" style="
+          padding: 20px 16px;
+          background: #1E1E1E;
+          border-radius: 12px;
+          border: 1px dashed rgba(255,255,255,0.07);
+          text-align: center;
+          color: #555;
+          font-size: 0.875rem;
+        ">
+          Select exercises above to arrange them here
+        </div>
+
+        <!-- Order list (rendered by JS) -->
+        <div
+          class="workout-builder__order-list"
+          id="order-panel"
+          aria-label="Workout exercise order"
+          role="list"
+        ></div>
+      </section>
+
+      <!-- Spacer for save bar -->
+      <div style="height: 32px;"></div>
+
+      <!-- ── Save Bar ──────────────────────────────────────────────────── -->
+      <div class="save-bar">
+        <button type="submit" class="btn btn--primary btn--full" id="save-workout-btn">
+          Save Workout
+        </button>
+      </div>
+
+    </form>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <a href="index.html" class="bottom-nav__item" aria-label="Dashboard">
+      <span class="bottom-nav__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+      </span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="add-exercise.html" class="bottom-nav__item" aria-label="Add exercise">
+      <span class="bottom-nav__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+      </span>
+      <span class="bottom-nav__label">Add</span>
+    </a>
+    <a href="create-workout.html" class="bottom-nav__item bottom-nav__item--active" aria-current="page" aria-label="Create workout">
+      <span class="bottom-nav__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </span>
+      <span class="bottom-nav__label">Workout</span>
+    </a>
+  </nav>
+
+</div><!-- /.app-shell -->
+
+<!-- Scripts -->
+<script src="js/storage.js"></script>
+<script src="js/main.js"></script>
+<script src="js/workout-player.js"></script>
+
+</body>
+</html>

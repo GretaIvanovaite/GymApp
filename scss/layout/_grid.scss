@@ -1,0 +1,104 @@
+// ============================================
+// GymStack — Grid & Layout Utilities
+// ============================================
+
+// App shell wrapper
+.app-shell {
+  max-width: $max-width;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  // Subtle grain overlay for depth
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: $z-toast + 1;
+    mix-blend-mode: overlay;
+  }
+}
+
+// Main page content
+.page-content {
+  flex: 1;
+  padding: $space-lg $space-md;
+  padding-bottom: calc($nav-height + $space-xl);
+  overflow-y: auto;
+}
+
+// Section spacing
+.section {
+  margin-bottom: $space-xl;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $space-md;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $text-muted;
+  }
+
+  &__action {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $accent-neon;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Card stacks
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+// Stats grid
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-sm;
+}
+
+// Utility classes
+.flex        { display: flex; }
+.flex-col    { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm      { gap: $space-sm; }
+.gap-md      { gap: $space-md; }
+.mt-sm       { margin-top: $space-sm; }
+.mt-md       { margin-top: $space-md; }
+.mt-lg       { margin-top: $space-lg; }
+.mb-md       { margin-bottom: $space-md; }
+.mb-lg       { margin-bottom: $space-lg; }
+.w-full      { width: 100%; }
+.text-right  { text-align: right; }
+
+// Responsive: allow wider on tablets/desktop
+@supports (min-width: 0) {
+  @media (min-width: 600px) {
+    .app-shell {
+      // Display a border to show app bounds on desktop
+      border-left: 1px solid $border-subtle;
+      border-right: 1px solid $border-subtle;
+    }
+  }
+}

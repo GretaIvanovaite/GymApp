@@ -1,0 +1,58 @@
+// ============================================
+// GymStack — Design Tokens
+// ============================================
+
+// --- Colour Palette ---
+$bg-primary:      #121212;
+$bg-secondary:    #0D0D0D;
+$surface-card:    #1E1E1E;
+$surface-raised:  #252525;
+$surface-input:   #2A2A2A;
+
+$accent-neon:     #00FFCC;
+$accent-neon-dim: rgba(0, 255, 204, 0.15);
+$accent-action:   #FF3E3E;
+$accent-action-dim: rgba(255, 62, 62, 0.15);
+$accent-amber:    #FFB830;
+
+$text-main:       #FFFFFF;
+$text-muted:      #B3B3B3;
+$text-faint:      #555555;
+
+$border-subtle:   rgba(255, 255, 255, 0.07);
+$border-active:   rgba(0, 255, 204, 0.4);
+
+// --- Typography ---
+$font-stack:      'Barlow', 'Barlow Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-display:    'Barlow Condensed', $font-stack;
+
+// --- Spacing Scale ---
+$space-xs:   4px;
+$space-sm:   8px;
+$space-md:   16px;
+$space-lg:   24px;
+$space-xl:   32px;
+$space-2xl:  48px;
+$space-3xl:  64px;
+
+// --- Layout ---
+$border-radius:   12px;
+$border-radius-sm: 8px;
+$border-radius-lg: 20px;
+$nav-height:      64px;
+$max-width:       480px;   // Mobile-first constraint
+
+// --- Shadows ---
+$shadow-card:     0 4px 24px rgba(0, 0, 0, 0.4);
+$shadow-neon:     0 0 20px rgba(0, 255, 204, 0.35), 0 0 40px rgba(0, 255, 204, 0.1);
+$shadow-action:   0 0 20px rgba(255, 62, 62, 0.35);
+
+// --- Transitions ---
+$transition-fast:   0.15s ease;
+$transition-base:   0.3s ease;
+$transition-slow:   0.5s ease;
+
+// --- Z-Index ---
+$z-nav:     100;
+$z-modal:   200;
+$z-toast:   300;

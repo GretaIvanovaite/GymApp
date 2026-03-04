@@ -1,11 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GymApp</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GymStack — Your digital pocket coach" />
+  <title>GymStack — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
-    
+
+<div class="app-shell">
+
+  <!-- Top Header -->
+  <header class="page-header" role="banner">
+    <div class="page-header__inner">
+      <span class="page-header__logo">Gym<span>Stack</span></span>
+      <nav class="page-header__actions" aria-label="Header actions">
+        <a href="add-exercise.html" class="btn btn--ghost-neon btn--sm" aria-label="Add new exercise">
+          + Exercise
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-content" id="main-content">
+
+    <!-- Hero Greeting -->
+    <section class="dashboard__hero" aria-label="Greeting">
+      <p class="dashboard__greeting">Let's get to work</p>
+      <h1 class="dashboard__headline">
+        Train
+        <span id="js-headline-accent">Harder.</span>
+      </h1>
+    </section>
+
+    <!-- Stats Strip -->
+    <section class="stats-grid" style="margin: 0 0 32px; padding: 0 16px;" aria-label="Overview stats">
+      <article class="stat-card">
+        <div class="stat-card__value" id="stat-exercises">—</div>
+        <div class="stat-card__label">Exercises</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-card__value" id="stat-workouts">—</div>
+        <div class="stat-card__label">Workouts</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-card__value" id="stat-upcoming">—</div>
+        <div class="stat-card__label">Upcoming</div>
+      </article>
+    </section>
+
+    <!-- Next Workout Spotlight -->
+    <section style="padding: 0 16px;" aria-label="Next scheduled workout">
+      <div id="next-workout-container">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section style="padding: 0 16px; margin-top: 32px;" aria-label="Quick actions">
+      <h2 class="section__title" style="margin-bottom: 12px;">Quick actions</h2>
+      <div class="quick-actions">
+        <a href="add-exercise.html" class="quick-actions__item" aria-label="Add new exercise">
+          <div class="quick-actions__icon" style="background: rgba(0,255,204,0.1); color: #00FFCC;">🏋️</div>
+          <span class="quick-actions__text">New Exercise</span>
+        </a>
+        <a href="create-workout.html" class="quick-actions__item" aria-label="Create new workout">
+          <div class="quick-actions__icon" style="background: rgba(255,184,48,0.1); color: #FFB830;">📋</div>
+          <span class="quick-actions__text">New Workout</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Exercise Library -->
+    <section style="padding: 0 16px; margin-top: 32px;" aria-label="Exercise library">
+      <div class="section__header">
+        <h2 class="section__title">Exercise Library</h2>
+        <a href="add-exercise.html" class="section__action" aria-label="Add new exercise">+ Add</a>
+      </div>
+      <div class="card-stack" id="exercise-list" role="list">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Workout Schedule -->
+    <section style="padding: 0 16px; margin-top: 32px;" aria-label="Workout schedule">
+      <div class="section__header">
+        <h2 class="section__title">Schedule</h2>
+        <a href="create-workout.html" class="section__action" aria-label="Create new workout">+ Create</a>
+      </div>
+      <div class="card-stack" id="workout-list" role="list">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <a href="index.html" class="bottom-nav__item bottom-nav__item--active" aria-current="page" aria-label="Dashboard">
+      <span class="bottom-nav__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+      </span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="add-exercise.html" class="bottom-nav__item" aria-label="Add exercise">
+      <span class="bottom-nav__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+      </span>
+      <span class="bottom-nav__label">Add</span>
+    </a>
+    <a href="create-workout.html" class="bottom-nav__item" aria-label="Create workout">
+      <span class="bottom-nav__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </span>
+      <span class="bottom-nav__label">Workout</span>
+    </a>
+  </nav>
+
+</div><!-- /.app-shell -->
+
+<!-- Scripts -->
+<script src="js/storage.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // ── Dashboard rendering ──────────────────────────────────────────────────
+  (function() {
+
+    function renderStats() {
+      const exercises = GymStack.ExerciseStore.getAll();
+      const workouts  = GymStack.WorkoutStore.getAll();
+      const upcoming  = GymStack.WorkoutStore.getUpcoming();
+
+      document.getElementById('stat-exercises').textContent = exercises.length;
+      document.getElementById('stat-workouts').textContent  = workouts.length;
+      document.getElementById('stat-upcoming').textContent  = upcoming.length;
+    }
+
+    function renderNextWorkout() {
+      const container = document.getElementById('next-workout-container');
+      const upcoming  = GymStack.WorkoutStore.getUpcoming();
+
+      if (!upcoming.length) {
+        container.innerHTML = `
+          <div class="dashboard__empty-state">
+            <div class="dashboard__empty-state-icon">🗓️</div>
+            <p class="dashboard__empty-state-text">No workouts planned</p>
+            <p class="dashboard__empty-state-sub">Build your first session to get started.</p>
+            <a href="create-workout.html" class="btn btn--primary">Create Workout</a>
+          </div>`;
+        return;
+      }
+
+      const next = upcoming[0];
+      const exercises = next.exerciseIds
+        .map(id => GymStack.ExerciseStore.getById(id))
+        .filter(Boolean);
+
+      container.innerHTML = `
+        <div class="dashboard__next-workout">
+          <p class="dashboard__next-date">${GymStack.formatDate(next.date)}</p>
+          <h2 class="dashboard__next-title">${next.name}</h2>
+          <div class="dashboard__next-tags">
+            ${exercises.map(ex => `<span class="workout-card__tag">${ex.name}</span>`).join('')}
+          </div>
+          <a href="create-workout.html" class="btn btn--ghost-neon btn--sm">View Plan</a>
+        </div>`;
+    }
+
+    function renderExerciseList() {
+      const container = document.getElementById('exercise-list');
+      const exercises = GymStack.ExerciseStore.getAll();
+
+      if (!exercises.length) {
+        container.innerHTML = `<p style="color:#555; font-size:0.875rem; padding:16px 0;">No exercises yet. <a href="add-exercise.html" style="color:#00FFCC">Add one →</a></p>`;
+        return;
+      }
+
+      container.innerHTML = exercises.map(ex => {
+        const badge   = GymStack.getTypeBadge(ex.type);
+        const metrics = GymStack.formatMetrics(ex);
+        return `
+          <article class="exercise-card" role="listitem">
+            <div class="exercise-card__badge exercise-card__badge--${badge.modifier}" aria-hidden="true">
+              ${badge.icon}
+            </div>
+            <div class="exercise-card__info">
+              <div class="exercise-card__name">${ex.name}</div>
+              <div class="exercise-card__meta">${metrics || ex.type}</div>
+            </div>
+            <div class="exercise-card__actions">
+              <button
+                class="btn btn--icon"
+                aria-label="Delete ${ex.name}"
+                style="border:1px solid rgba(255,62,62,0.3); color:#FF3E3E; background:rgba(255,62,62,0.08);"
+                onclick="deleteExercise('${ex.id}', '${ex.name.replace(/'/g, "\\'")}')"
+              >✕</button>
+            </div>
+          </article>`;
+      }).join('');
+    }
+
+    function renderWorkoutList() {
+      const container = document.getElementById('workout-list');
+      const workouts  = GymStack.WorkoutStore.getAll();
+
+      if (!workouts.length) {
+        container.innerHTML = `<p style="color:#555; font-size:0.875rem; padding:16px 0;">No workouts yet. <a href="create-workout.html" style="color:#00FFCC">Create one →</a></p>`;
+        return;
+      }
+
+      container.innerHTML = workouts.map(wk => {
+        const exercises = wk.exerciseIds.map(id => GymStack.ExerciseStore.getById(id)).filter(Boolean);
+        return `
+          <article class="workout-card" role="listitem">
+            <div class="workout-card__header">
+              <span class="workout-card__date">${GymStack.formatDate(wk.date)}</span>
+              <button
+                class="btn btn--icon btn--sm"
+                style="border:1px solid rgba(255,62,62,0.3); color:#FF3E3E; background:rgba(255,62,62,0.08); width:30px; height:30px; border-radius:8px; font-size:0.7rem;"
+                aria-label="Delete ${wk.name}"
+                onclick="deleteWorkout('${wk.id}', '${wk.name.replace(/'/g, "\\'")}')"
+              >✕</button>
+            </div>
+            <h3 class="workout-card__title">${wk.name}</h3>
+            <div class="workout-card__exercises">
+              ${exercises.map(ex => `<span class="workout-card__tag">${ex.name}</span>`).join('')}
+            </div>
+          </article>`;
+      }).join('');
+    }
+
+    window.deleteExercise = async function(id, name) {
+      const confirmed = await GymStack.confirmDialog(`Delete "${name}"?`);
+      if (confirmed) {
+        GymStack.ExerciseStore.delete(id);
+        GymStack.showToast(`"${name}" deleted`, 'success');
+        renderAll();
+      }
+    };
+
+    window.deleteWorkout = async function(id, name) {
+      const confirmed = await GymStack.confirmDialog(`Delete "${name}"?`);
+      if (confirmed) {
+        GymStack.WorkoutStore.delete(id);
+        GymStack.showToast(`"${name}" deleted`, 'success');
+        renderAll();
+      }
+    };
+
+    function renderAll() {
+      renderStats();
+      renderNextWorkout();
+      renderExerciseList();
+      renderWorkoutList();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderAll);
+
+  })();
+</script>
+
 </body>
 </html>

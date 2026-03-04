@@ -1,0 +1,22 @@
+// ============================================
+// GymStack — Main SCSS Entry Point
+// 7-1 Pattern
+// ============================================
+
+// -- Base --
+@import 'base/variables';
+@import 'base/reset';
+@import 'base/typography';
+
+// -- Layout --
+@import 'layout/grid';
+@import 'layout/header';
+
+// -- Components --
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/forms';
+
+// -- Pages --
+@import 'pages/dashboard';
+@import 'pages/player';

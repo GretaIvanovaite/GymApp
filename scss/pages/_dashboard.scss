@@ -1,0 +1,182 @@
+// ============================================
+// GymStack — Dashboard Page
+// ============================================
+
+.dashboard {
+
+  // Hero greeting block
+  &__hero {
+    padding: $space-lg $space-md $space-xl;
+    position: relative;
+    overflow: hidden;
+
+    // Background radial glow
+    &::after {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0, 255, 204, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+  }
+
+  &__greeting {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $text-faint;
+    margin-bottom: $space-xs;
+  }
+
+  &__headline {
+    font-family: $font-display;
+    font-size: clamp(2rem, 7vw, 3rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: $text-main;
+
+    span {
+      color: $accent-neon;
+      display: block;
+    }
+  }
+
+  // Upcoming workout highlight
+  &__next-workout {
+    margin: 0 $space-md $space-xl;
+    padding: $space-lg;
+    background: linear-gradient(135deg, $surface-card 0%, rgba(0, 255, 204, 0.05) 100%);
+    border-radius: $border-radius-lg;
+    border: 1px solid $border-active;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: 'NEXT UP';
+      position: absolute;
+      top: $space-md;
+      right: $space-md;
+      font-size: 0.625rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: $accent-neon;
+      opacity: 0.6;
+    }
+
+    // Decorative background text
+    &::after {
+      content: '▶';
+      position: absolute;
+      bottom: -10px;
+      right: $space-md;
+      font-size: 5rem;
+      color: $accent-neon;
+      opacity: 0.04;
+      line-height: 1;
+    }
+  }
+
+  &__next-date {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $accent-neon;
+    margin-bottom: $space-xs;
+  }
+
+  &__next-title {
+    font-family: $font-display;
+    font-size: 1.375rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: $space-sm;
+  }
+
+  &__next-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xs;
+    margin-bottom: $space-md;
+  }
+
+  &__empty-state {
+    text-align: center;
+    padding: $space-3xl $space-md;
+    color: $text-faint;
+
+    &-icon {
+      font-size: 3rem;
+      margin-bottom: $space-md;
+      opacity: 0.3;
+    }
+
+    &-text {
+      font-family: $font-display;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: $text-faint;
+      margin-bottom: $space-sm;
+    }
+
+    &-sub {
+      font-size: 0.875rem;
+      color: $text-faint;
+      margin-bottom: $space-lg;
+    }
+  }
+}
+
+// Quick-action row
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-sm;
+  margin: 0 $space-md $space-xl;
+
+  &__item {
+    padding: $space-md;
+    background: $surface-card;
+    border-radius: $border-radius;
+    border: 1px solid $border-subtle;
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    cursor: pointer;
+    transition: all $transition-base;
+    text-decoration: none;
+
+    &:hover {
+      border-color: $accent-neon;
+      background: $accent-neon-dim;
+    }
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: $border-radius-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  &__text {
+    font-family: $font-display;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $text-main;
+  }
+}
