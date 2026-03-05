@@ -84,6 +84,22 @@ input[type="submit"]:focus-visible {
   background-color: var(--font-colour-bright);
 }
 
+a #logo_hover {
+  display: none;
+}
+
+a:hover #logo_default,
+a:focus-within #logo_default,
+a:focus-visible #logo_default {
+  display: none;
+}
+
+a:hover #logo_hover,
+a:focus-within #logo_hover,
+a:focus-visible #logo_hover {
+  display:inline;
+}
+
 input[type="checkbox"]:hover,
 input[type="checkbox"]:focus-visible,
 input[type="checkbox"]:focus-within {

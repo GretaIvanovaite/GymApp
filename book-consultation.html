@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GymApp — Book a consultation with a trainer" />
+  <title>GymApp — Book Consultation</title>
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="assets/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+
+  <header role="banner">
+    <a href="index.html">GymApp</a>
+    <a href="book-consultation.html" class="booking">Book consultation</a>
+  </header>
+
+  <main id="main-content">
+    <section>
+      <h1>Book a consultation</h1>
+    </section>
+
+    <form id="create_exercise">
+
+      <label for="name">Your name</label>
+      <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+
+      <label for="trainer">Trainer</label>
+      <select id="trainer" name="trainer">
+        <option value="">Select a trainer</option>
+        <option value="alex">Alex — Strength & Conditioning</option>
+        <option value="morgan">Morgan — Calisthenics</option>
+        <option value="jordan">Jordan — Mobility & Recovery</option>
+      </select>
+
+      <label for="date">Preferred date</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">Preferred time</label>
+      <select id="time" name="time">
+        <option value="">Select a time</option>
+        <option value="0900">09:00</option>
+        <option value="1000">10:00</option>
+        <option value="1100">11:00</option>
+        <option value="1400">14:00</option>
+        <option value="1500">15:00</option>
+        <option value="1600">16:00</option>
+      </select>
+
+      <label for="notes">Notes</label>
+      <input type="text" id="notes" name="notes" placeholder="Any injuries, goals or questions...">
+
+      <input type="submit" value="Book">
+
+    </form>
+  </main>
+
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="add-exercise.html">Add exercise</a>
+    <a href="create-workout.html">Add workout</a>
+  </nav>
+
+</body>
+</html>

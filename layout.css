@@ -142,7 +142,6 @@ section > a {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  padding: var(--padding-small);
 }
 
 #exercise-list li {
@@ -151,6 +150,7 @@ section > a {
   gap: var(--spacing-md);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius-base);
+  box-sizing: content-box;
 }
 
 #exercise-list p {
