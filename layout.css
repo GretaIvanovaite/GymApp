@@ -67,6 +67,11 @@ ul {
   list-style: none;
 }
 
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
 header {
   display: flex;
   align-items: center;
@@ -78,7 +83,7 @@ header {
   border-radius: var(--border-radius-bottom);
 }
 
-header a:last-child {
+header a {
   padding: var(--spacing-sm) var(--spacing-lg);
 }
 
@@ -108,6 +113,8 @@ section li a {
 section > a {
   display: inline-block;
   margin: var(--spacing-sm) 0 var(--spacing-md);
+  padding: var(--padding-small);
+  justify-self: right;
 }
 
 #workout-list {
@@ -135,6 +142,7 @@ section > a {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+  padding: var(--padding-small);
 }
 
 #exercise-list li {
@@ -170,26 +178,40 @@ nav a {
   padding: var(--spacing-sm) var(--spacing-lg);
 }
 
-form label {
+#create_exercise label {
   display: block;
   padding: var(--padding-top-bottom);
 }
 
-form input{
-    padding: var(--padding-small);
+#create_exercise input{
     width: 90%;
 }
 
-form select {
+#create_exercise select {
     padding: var(--padding-small);
 }
 
-form input[type="submit"] {
+#create_exercise input[type="submit"],
+#create_workout input[type="submit"] {
     display: block;
+    padding: var(--padding-small);
     border: var(--border-button);
     margin: var(--padding-top-bottom);
     width: 20%;
+    cursor: pointer;
 }
+
+input[type="checkbox"] {
+  border: var(--border-button);
+  border-radius: var(--border-radius-small);
+  width: 2rem;
+  height: 2rem;
+}
+
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
 
 /* Bigger screens */
 @media (min-width: 600px) {

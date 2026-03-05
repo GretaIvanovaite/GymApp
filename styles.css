@@ -80,8 +80,20 @@ a:focus-visible *,
 input[type="submit"]:hover,
 input[type="submit"]:focus-within,
 input[type="submit"]:focus-visible {
-  color: var(--bg-colour);
+  color: var(--bg-colour) !important;
   background-color: var(--font-colour-bright);
+}
+
+input[type="checkbox"]:hover,
+input[type="checkbox"]:focus-visible,
+input[type="checkbox"]:focus-within {
+  background-color: var(--font-colour-bright);
+  color: var(--bg-colour);
+}
+
+input[type="checkbox"]:checked::after {
+    content: "✓";
+    color: var(--font-colour-primary);
 }
 
 
@@ -148,8 +160,6 @@ section > a {
   border: var(--border-button);
   font-size: var(--font-size-smaller);
   color: var(--font-colour-bright);
-  padding: var(--padding-small);
-  justify-self: right;
 }
 
 .workout-tile {
@@ -184,7 +194,6 @@ section > a {
 
 #exercise-list a {
   font-size: var(--font-size-smaller);
-  padding: var(--padding-small);
   letter-spacing: var(--letter-spacing-less);
   font-weight: var(--font-weight-bold);
 }

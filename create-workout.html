@@ -20,20 +20,10 @@
       <h1>Create workout</h1>
     </section>
 
-    <form>
-        <label for="exercise_name">Workout name</label>
-        <input id="exercise_name" type="text" placeholder="Full body Monday, Legs only...">
-        <label for="exercise_type">Type of exercise</label>
-        <select id="exercise_type" placeholder="Exercise type">
-            <option value="">Exercise type</option>
-            <option value="calisthenics">Calisthenics</option>
-            <option value="cardio">Cardio</option>
-            <option value="hiit">HIIT</option>
-            <option value="weights">Weights</option>
-        </select>
-        <label for="exercise_notes">Notes</label>
-        <input id="exercise_notes" type="text" placeholder="Focus on your form...">
-        <input type="submit" value="Save">
+    <form id="create_workout">
+        <input class="exercise_option" type="checkbox" id="pull_ups">
+        <label for="pull_ups">Pull ups</label>
+        <input type="submit" value="Select">
     </form>
   </main>
 
