@@ -1,4 +1,48 @@
 /* General styles */
+:root{
+    --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --font-weight-bold: 800;
+    --font-weight-medium: 700;
+    --font-weight-regular: 500;
+    --font-colour-primary: #ffffff;
+    --font-colour-secondary: #CDE5E1;
+    --font-colour-bright: #00ffcc;
+    --font-size-base: 16px;
+    --font-size-larger: 2rem;
+    --font-size-large: 1.5rem;
+    --font-size-medium: 1.2rem;
+    --font-size-small: 1rem;
+    --font-size-smaller: 0.8rem;
+    --line-height-base: 1;
+    --line-height-big: 1.6;
+    --bg-colour: #1b2a26;
+    --bg-colour-elements: #121212;
+    --bg-colour-tile: #1e1e1e;
+    --border-radius-base: 1rem;
+    --border-radius-small: 0.5rem;
+    --border-radius-top: 1rem 1rem 0 0;
+    --border-radius-bottom: 0 0 1rem 1rem;
+    --bg-button: rgba(0, 255, 204, 0.1);
+    --border-button: 1px solid rgba(0, 255, 204, 0.4);
+    --letter-spacing-less: -0.01rem;
+    --letter-spacing-base: 0.1rem;
+    --letter-spacing-more: 0.3rem;
+    --padding-small: 0.6rem;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    --spacing-3xl: 64px;
+    --spacing-4xl: 96px;
+    --border-subtle: 1px solid rgba(255, 255, 255, 0.07);
+    --z-header: 99;
+    --z-nav: 100;
+    --max-width: 480px;
+    --nav-height: 64px;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -12,7 +56,7 @@ html {
 
 body {
   min-height: 100vh;
-  max-width: 480px;
+  max-width: var(--max-width);
   margin: 0 auto;
   overflow-x: hidden;
 }
@@ -25,60 +69,54 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 16px 16px;
+  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
   position: sticky;
   top: 0;
-  z-index: 99;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  z-index: var(--z-header);
+  border-radius: var(--border-radius-bottom);
 }
 
 header a:last-child {
-  padding: 8px 16px;
-  border-radius: 12px;
+  padding: var(--spacing-sm) var(--spacing-lg);
 }
 
 main {
-  padding: 24px 16px;
-  padding-bottom: 96px;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  padding-bottom: var(--spacing-4xl);
 }
 
 section {
-  margin-bottom: 32px;
+  margin-bottom: var(--spacing-2xl);
 }
 
 /* Actions */
 section ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 12px;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
 }
 
 section li a {
   display: block;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: var(--spacing-lg);
 }
 
 /* Workouts */
 section > a {
   display: inline-block;
-  margin: 8px 0 12px;
+  margin: var(--spacing-sm) 0 var(--spacing-md);
 }
 
 #workout-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 
 .workout-tile {
   display: block;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-left: 3px solid #00ffcc;
-  padding: 16px;
+  padding: var(--spacing-lg);
 }
 
 .workout-tile section {
@@ -86,23 +124,22 @@ section > a {
 }
 
 .workout_title {
-  margin-bottom: 4px;
+  margin-bottom: var(--spacing-xs);
 }
 
 /* Exercises */
 #exercise-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 
 #exercise-list li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-base);
 }
 
 #exercise-list p {
@@ -116,18 +153,18 @@ nav {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 480px;
-  height: 64px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  max-width: var(--max-width);
+  height: var(--nav-height);
   display: flex;
   align-items: center;
   justify-content: space-around;
-  z-index: 100;
-  padding: 0 16px;
+  z-index: var(--z-nav);
+  padding: 0 var(--spacing-lg);
+  border-radius: var(--border-radius-top);
 }
 
 nav a {
-  padding: 8px 16px;
+  padding: var(--spacing-sm) var(--spacing-lg);
 }
 
 /* Bigger screens */

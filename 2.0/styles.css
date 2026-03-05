@@ -1,13 +1,58 @@
 /* General styles */
+:root{
+    --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --font-weight-bold: 800;
+    --font-weight-medium: 700;
+    --font-weight-regular: 500;
+    --font-colour-primary: #ffffff;
+    --font-colour-secondary: #CDE5E1;
+    --font-colour-bright: #00ffcc;
+    --font-size-base: 16px;
+    --font-size-larger: 2rem;
+    --font-size-large: 1.5rem;
+    --font-size-medium: 1.2rem;
+    --font-size-small: 1rem;
+    --font-size-smaller: 0.8rem;
+    --line-height-base: 1;
+    --line-height-big: 1.6;
+    --bg-colour: #1b2a26;
+    --bg-colour-elements: #121212;
+    --bg-colour-tile: #1e1e1e;
+    --border-radius-base: 1rem;
+    --border-radius-small: 0.5rem;
+    --border-radius-top: 1rem 1rem 0 0;
+    --border-radius-bottom: 0 0 1rem 1rem;
+    --bg-button: rgba(0, 255, 204, 0.1);
+    --border-button: 1px solid rgba(0, 255, 204, 0.4);
+    --letter-spacing-less: -0.01rem;
+    --letter-spacing-base: 0.1rem;
+    --letter-spacing-more: 0.3rem;
+    --padding-small: 0.6rem;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    --spacing-3xl: 64px;
+    --spacing-4xl: 96px;
+    --border-subtle: 1px solid rgba(255, 255, 255, 0.07);
+    --z-header: 99;
+    --z-nav: 100;
+    --max-width: 480px;
+    --nav-height: 64px;
+}
+
 html {
-  font-size: 16px;
+  font-family: var(--font-sans-serif);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--font-colour-primary);
 }
 
 body {
-  font-family: "Barlow", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #121212;
-  color: #ffffff;
-  line-height: 1.6;
+  background-color: var(--bg-colour);
+  line-height: var(--line-height-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -15,132 +60,121 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-less);
+  text-transform: uppercase;
+  color: var(--font-colour-bright);
+  border: var(--border-button);
+  border-radius: var(--border-radius-base);
 }
 
 /* Fonts */
 h1 {
-  font-family: "Barlow Condensed", "Barlow", sans-serif;
-  font-size: clamp(2rem, 7vw, 3rem);
-  font-weight: 800;
+  font-size: clamp(var(--font-size-large), 7vw, var(--font-size-larger));
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
-  letter-spacing: -0.01em;
-  line-height: 1;
-  color: #ffffff;
+  letter-spacing: var(--letter-spacing-base);
+  line-height: var(--line-height-base);
 }
 
 h2 {
-  font-family: "Barlow Condensed", "Barlow", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-base);
   text-transform: uppercase;
-  color: #b3b3b3;
+  color: var(--font-colour-secondary);
 }
 
 h3 {
-  font-family: "Barlow Condensed", "Barlow", sans-serif;
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: var(--letter-spacing-base);
 }
 
 p {
-  font-size: 0.9375rem;
-  color: #b3b3b3;
+  font-size: var(--font-size-small);
+  color: var(--font-colour-secondary);
 }
 
 /* Header */
-header {
-  background-color: #121212;
+header, nav {
+  background-color: var(--bg-colour-elements);
 }
 
 header a:first-child {
-  font-family: "Barlow Condensed", "Barlow", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-less);
   text-transform: uppercase;
-  color: #00ffcc;
+  color: var(--font-colour-bright);
+  border: none;
 }
 
-header a:last-child {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #00ffcc;
-  border: 1px solid rgba(0, 255, 204, 0.4);
-  background: rgba(0, 255, 204, 0.15);
+header a.booking {
+  font-size: var(--font-size-smaller);
 }
 
 /* Actions */
 section li a {
-  background: #1e1e1e;
-  font-family: "Barlow Condensed", "Barlow", sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-base);
   text-transform: uppercase;
-  color: #ffffff;
+  background-color: var(--bg-colour-elements);
+  border: var(--border-button);
 }
 
 /* Workouts */
 section > a {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #00ffcc;
+  background-color: var(--bg-colour-elements);
+  border: var(--border-button);
+  font-size: var(--font-size-smaller);
+  color: var(--font-colour-bright);
+  padding: var(--padding-small);
+  justify-self: right;
 }
 
 .workout-tile {
-  background: #1e1e1e;
+  background: var(--bg-colour-tile);
 }
 
-.workout_title {
-  color: #ffffff;
-}
 
 .duration,
 .rank {
-  font-size: 0.8125rem;
-  color: #b3b3b3;
+  font-size: var(--font-size-smaller);
+  color: var(--font-colour-secondary);
 }
 
 /* Exercises */
 #exercise-list li {
-  background: #1e1e1e;
+  background: var(--bg-colour-tile);
 }
 
 #exercise-list p {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: var(--font-size-small);
 }
 
 .exercise_type {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-less);
   text-transform: uppercase;
-  color: #b3b3b3;
+  color: var(--font-colour-secondary);
 }
 
 #exercise-list a {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #00ffcc;
-}
-
-nav {
-  background-color: #121212;
+  font-size: var(--font-size-smaller);
+  padding: var(--padding-small);
+  letter-spacing: var(--letter-spacing-less);
+  font-weight: var(--font-weight-bold);
 }
 
 nav a {
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-less);
   text-transform: uppercase;
-  color: #555555;
-}
-
-nav a {
-  color: #00ffcc;
+  border: none;
 }
