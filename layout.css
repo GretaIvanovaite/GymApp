@@ -117,8 +117,9 @@ section > a {
 }
 
 .workout-tile {
-  display: block;
+  display: flex;
   padding: var(--spacing-lg);
+  justify-content: space-between;
 }
 
 .workout-tile section {

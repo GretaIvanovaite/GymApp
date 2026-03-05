@@ -156,11 +156,13 @@ section > a {
   background: var(--bg-colour-tile);
 }
 
-
-.duration,
-.rank {
+.duration {
   font-size: var(--font-size-smaller);
   color: var(--font-colour-secondary);
+}
+
+.rank {
+  align-self: center;
 }
 
 /* Exercises */
