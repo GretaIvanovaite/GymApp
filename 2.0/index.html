@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GymApp — Your digital workout planner" />
+  <title>GymApp — Home</title>
+</head>
+<body>
+
+  <header role="banner">
+    <a>GymApp</a>
+    <a href="book-consultation.html">Book consultation</a>
+  </header>
+
+  <main id="main-content">
+    <section aria-label="Greeting">
+      <h1>Let's get to the gym</h1>
+    </section>
+
+    <section aria-label="Quick actions">
+      <h2>Quick actions</h2>
+      <ul>
+        <li><a href="add-exercise.html">New Exercise</a></li>
+        <li><a href="create-workout.html">New Workout</a></li>
+      </ul>
+    </section>
+
+    <section aria-label="Workout schedule">
+      <h2>Workout schedule</h2>
+      <a href="create-workout.html">Create</a>
+      <ul id="workout-list">
+        <li>
+            <a class="workout-tile" href="workout-details.html">
+                <section>
+                    <h3 class="workout_title">Full body</h3>
+                    <p class="duration">30 min</p>
+                    <p class="rank">5</p>
+                </section>
+            </a>
+        </li>
+        <li>
+            <a class="workout-tile" href="workout-details.html">
+                <section>
+                    <h3 class="workout_title">Arms strenghtening</h3>
+                    <p class="duration">15 min</p>
+                    <p class="rank">3</p>
+                </section>
+            </a>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-label="Exercise library">
+      <h2>Exercise Library</h2>
+      <a href="add-exercise.html">Add</a>
+      <ul id="exercise-list">
+        <li>
+            <p>Pull ups</p>
+            <span class="exercise_type">Calisthenics</span>
+            <a href="edit-exercise">Edit</a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <nav aria-label="Main navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="add-exercise.html">Add exercise</a>
+    <a href="create-workout.html">Add workout</a>
+  </nav>
+
+</body>
+</html>
