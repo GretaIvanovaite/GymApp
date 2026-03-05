@@ -28,6 +28,8 @@
     --letter-spacing-base: 0.1rem;
     --letter-spacing-more: 0.3rem;
     --padding-small: 0.6rem;
+    --padding-top-bottom: 2rem 0 1rem;
+    --padding-bottom: 0 0 1rem;
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 12px;
@@ -177,4 +179,28 @@ nav a {
   letter-spacing: var(--letter-spacing-less);
   text-transform: uppercase;
   border: none;
+}
+
+form label {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-base);
+}
+
+form input,
+form select {
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-small);
+    background: var(--bg-colour-tile);
+    color: var(--font-colour-primary);
+    font-weight: var(--font-weight-medium);
+    border: var(--border-button);
+}
+
+form input[type="submit"] {
+    font-family: var(--font-sans-serif);
+    font-weight: var(--font-weight-medium);
+    background-color: var(--bg-button);
+    color: var(--font-colour-bright);
 }

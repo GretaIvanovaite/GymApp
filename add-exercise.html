@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GymApp — Your digital workout planner" />
+  <title>GymApp — Add exercise</title>
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header role="banner">
+    <a href="index.html">GymApp</a>
+    <a href="book-consultation.html" class="booking">Book consultation</a>
+  </header>
+
+  <main id="main-content">
+    <section aria-label="Greeting">
+      <h1>Add exercise</h1>
+    </section>
+
+    <form>
+        <label for="exercise_name">Exercise name</label>
+        <input id="exercise_name" type="text" placeholder="Push ups, Threadmill run, Deadlifts...">
+        <label for="exercise_type">Type of exercise</label>
+        <select id="exercise_type" placeholder="Exercise type">
+            <option value="">Exercise type</option>
+            <option value="calisthenics">Calisthenics</option>
+            <option value="cardio">Cardio</option>
+            <option value="hiit">HIIT</option>
+            <option value="weights">Weights</option>
+        </select>
+        <label for="exercise_notes">Notes</label>
+        <input id="exercise_notes" type="text" placeholder="Focus on your form...">
+        <input type="submit" value="Save">
+    </form>
+  </main>
+
+  <nav aria-label="Main navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="add-exercise.html">Add exercise</a>
+    <a href="create-workout.html">Add workout</a>
+  </nav>
+
+</body>
+</html>

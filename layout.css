@@ -28,6 +28,8 @@
     --letter-spacing-base: 0.1rem;
     --letter-spacing-more: 0.3rem;
     --padding-small: 0.6rem;
+    --padding-top-bottom: 2rem 0 1rem;
+    --padding-bottom: 0 0 1rem;
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 12px;
@@ -165,6 +167,27 @@ nav {
 
 nav a {
   padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+form label {
+  display: block;
+  padding: var(--padding-top-bottom);
+}
+
+form input{
+    padding: var(--padding-small);
+    width: 90%;
+}
+
+form select {
+    padding: var(--padding-small);
+}
+
+form input[type="submit"] {
+    display: block;
+    border: var(--border-button);
+    margin: var(--padding-top-bottom);
+    width: 20%;
 }
 
 /* Bigger screens */
