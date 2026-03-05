@@ -1,0 +1,136 @@
+/* General styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 16px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+header a:last-child {
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+
+main {
+  padding: 24px 16px;
+  padding-bottom: 96px;
+}
+
+section {
+  margin-bottom: 32px;
+}
+
+/* Actions */
+section ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+section li a {
+  display: block;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Workouts */
+section > a {
+  display: inline-block;
+  margin: 8px 0 12px;
+}
+
+#workout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.workout-tile {
+  display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid #00ffcc;
+  padding: 16px;
+}
+
+.workout-tile section {
+  margin-bottom: 0;
+}
+
+.workout_title {
+  margin-bottom: 4px;
+}
+
+/* Exercises */
+#exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#exercise-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+#exercise-list p {
+  flex: 1;
+}
+
+/* Nav */
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 64px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 100;
+  padding: 0 16px;
+}
+
+nav a {
+  padding: 8px 16px;
+}
+
+/* Bigger screens */
+@media (min-width: 600px) {
+
+}

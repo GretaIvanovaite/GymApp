@@ -1,0 +1,146 @@
+/* General styles */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Barlow", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Fonts */
+h1 {
+  font-family: "Barlow Condensed", "Barlow", sans-serif;
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: #ffffff;
+}
+
+h2 {
+  font-family: "Barlow Condensed", "Barlow", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b3b3b3;
+}
+
+h3 {
+  font-family: "Barlow Condensed", "Barlow", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+p {
+  font-size: 0.9375rem;
+  color: #b3b3b3;
+}
+
+/* Header */
+header {
+  background-color: #121212;
+}
+
+header a:first-child {
+  font-family: "Barlow Condensed", "Barlow", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #00ffcc;
+}
+
+header a:last-child {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #00ffcc;
+  border: 1px solid rgba(0, 255, 204, 0.4);
+  background: rgba(0, 255, 204, 0.15);
+}
+
+/* Actions */
+section li a {
+  background: #1e1e1e;
+  font-family: "Barlow Condensed", "Barlow", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Workouts */
+section > a {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #00ffcc;
+}
+
+.workout-tile {
+  background: #1e1e1e;
+}
+
+.workout_title {
+  color: #ffffff;
+}
+
+.duration,
+.rank {
+  font-size: 0.8125rem;
+  color: #b3b3b3;
+}
+
+/* Exercises */
+#exercise-list li {
+  background: #1e1e1e;
+}
+
+#exercise-list p {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.exercise_type {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #b3b3b3;
+}
+
+#exercise-list a {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #00ffcc;
+}
+
+nav {
+  background-color: #121212;
+}
+
+nav a {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555555;
+}
+
+nav a {
+  color: #00ffcc;
+}
