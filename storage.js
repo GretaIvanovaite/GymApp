@@ -370,9 +370,15 @@ if (exerciseForm) {
     });
   }
 
+  var exerciseErrorEl = document.getElementById("exercise_form_error");
+
   exerciseForm.addEventListener("submit", async function(e) {
     e.preventDefault();
-    if (!exerciseForm.checkValidity()) { exerciseForm.reportValidity(); return; }
+    if (!exerciseForm.checkValidity()) {
+      if (exerciseErrorEl) exerciseErrorEl.hidden = false;
+      return;
+    }
+    if (exerciseErrorEl) exerciseErrorEl.hidden = true;
     var data = {
       name:               document.getElementById("exercise_name")?.value || "",
       type:               document.getElementById("exercise_type")?.value || "",
@@ -418,6 +424,10 @@ if (exerciseForm) {
     }
     window.location.href = "index.html";
   });
+
+  /* hide exercise error as soon as required fields are valid */
+  exerciseForm.addEventListener("input",  function() { if (exerciseForm.checkValidity() && exerciseErrorEl) exerciseErrorEl.hidden = true; });
+  exerciseForm.addEventListener("change", function() { if (exerciseForm.checkValidity() && exerciseErrorEl) exerciseErrorEl.hidden = true; });
 }
 
 // workout form — dynamically populates exercise checkboxes from indexeddb
@@ -458,11 +468,16 @@ if (workoutForm) {
     });
   }
 
+  var workoutErrorEl = document.getElementById("workout_form_error");
+
   workoutForm.addEventListener("submit", async function(e) {
     e.preventDefault();
-    if (!workoutForm.checkValidity()) { workoutForm.reportValidity(); return; }
     var nameInput = document.getElementById("workout_name");
-    if (!nameInput || !nameInput.value.trim()) return;
+    if (!nameInput || !nameInput.value.trim()) {
+      if (workoutErrorEl) workoutErrorEl.hidden = false;
+      return;
+    }
+    if (workoutErrorEl) workoutErrorEl.hidden = true;
     var data = {
       name:      nameInput.value.trim(),
       exercises: Array.from(document.querySelectorAll(".exercise_option:checked")).map(function(cb) { return Number(cb.value); }),
@@ -476,6 +491,12 @@ if (workoutForm) {
     }
     await saveRecord("workouts", data);
     window.location.href = "index.html";
+  });
+
+  /* hide workout error as soon as a name is typed */
+  var workoutNameEl = document.getElementById("workout_name");
+  if (workoutNameEl) workoutNameEl.addEventListener("input", function() {
+    if (workoutNameEl.value.trim() && workoutErrorEl) workoutErrorEl.hidden = true;
   });
 }
 

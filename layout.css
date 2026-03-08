@@ -137,8 +137,15 @@ section ul {
   margin-top: var(--spacing-md);
 }
 
+section li {
+  display: flex;
+}
+
 section li a {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   padding: var(--spacing-lg);
 }
 
@@ -209,6 +216,8 @@ nav {
 
 nav a {
   padding: var(--spacing-sm) var(--spacing-lg);
+  text-align: center;
+  flex: 1;
 }
 
 #create_exercise label,

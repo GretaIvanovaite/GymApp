@@ -180,6 +180,19 @@ section li a {
   text-transform: uppercase;
   background-color: var(--bg-colour-elements);
   border: var(--border-button);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+/* quick action tiles — centred text, extra padding forces two-line wrap */
+section[aria-label="quick actions"] li a {
+  text-align: center;
+  justify-content: center;
+  padding: var(--spacing-md) var(--spacing-2xl);
+}
+
+/* reset width on edit links inside exercise list items */
+#exercise-list li a {
+  width: auto;
 }
 
 /* Workouts */
@@ -244,7 +257,7 @@ section > a {
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-base);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   cursor: pointer;
 }
 
@@ -334,7 +347,7 @@ label:has(+ select[required])::after {
 
 /* Narrow number inputs */
 input.input-narrow {
-  width: 8rem;
+  width: clamp(6rem, 30vw, 8rem);
 }
 
 /* Number input spinner buttons */
@@ -344,6 +357,8 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: var(--bg-button);
   border-left: var(--border-button);
   cursor: pointer;
+  width: 1.2rem;
+  height: 1.4rem;
 }
 
 form input,
@@ -418,7 +433,7 @@ form input[type="submit"] {
 
 .cancel-btn:hover,
 .cancel-btn:focus-visible {
-  color: var(--font-colour-primary);
+  color: var(--font-colour-bright) !important;
   background: var(--bg-colour-tile);
   border-color: var(--bg-colour-tile);
 }
