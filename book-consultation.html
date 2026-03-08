@@ -36,7 +36,7 @@
       <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
 
       <label for="trainer">Trainer</label>
-      <select id="trainer" name="trainer">
+      <select id="trainer" name="trainer" required>
         <option value="">Select a trainer</option>
         <option value="alex">Alex — Strength &amp; Conditioning</option>
         <option value="morgan">Morgan — Calisthenics</option>
@@ -60,6 +60,8 @@
       <label for="notes">Notes</label>
       <textarea id="notes" name="notes" class="auto-resize" placeholder="Any injuries, goals or questions..." rows="1"></textarea>
 
+      <p id="form_error" hidden role="alert" class="form-error">Please fill in all required fields: name, email, trainer, and preferred date.</p>
+      <p id="prototype_notice" hidden aria-live="polite">This is a prototype student project - no data is sent and no booking is made.</p>
       <input type="submit" value="Book">
     </form>
   </main>
@@ -69,6 +71,56 @@
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>
   </nav>
+
+  <script>
+    /* intercept consultation form — show inline error or prototype notice */
+    var consultForm = document.getElementById("consultation_form");
+    var errorEl     = document.getElementById("form_error");
+    var dateInput   = document.getElementById("date");
+
+    /* restrict date picker to today and up to 2 years ahead */
+    var today   = new Date();
+    var maxDate = new Date(today.getFullYear() + 2, today.getMonth(), today.getDate());
+    dateInput.min = today.toISOString().split("T")[0];
+    dateInput.max = maxDate.toISOString().split("T")[0];
+
+    /* returns an error string if something is wrong, or null if all is valid */
+    function getFormError() {
+      var name    = document.getElementById("name").value.trim();
+      var email   = document.getElementById("email").value.trim();
+      var trainer = document.getElementById("trainer").value;
+      var date    = dateInput.value;
+
+      if (!name || !email || !trainer || !date) {
+        return "Please fill in all required fields: name, email, trainer, and preferred date.";
+      }
+      if (!document.getElementById("email").validity.valid) {
+        return "Please enter a valid email address.";
+      }
+      if (date < dateInput.min || date > dateInput.max) {
+        return "Please select a date between today and two years from now.";
+      }
+      return null;
+    }
+
+    consultForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var err = getFormError();
+      if (err) {
+        errorEl.textContent = err;
+        errorEl.hidden = false;
+        return;
+      }
+      errorEl.hidden = true;
+      var notice = document.getElementById("prototype_notice");
+      notice.hidden = false;
+      notice.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    /* update or clear error message live as the user fills in fields */
+    consultForm.addEventListener("input",  function () { if (!getFormError()) errorEl.hidden = true; });
+    consultForm.addEventListener("change", function () { if (!getFormError()) errorEl.hidden = true; });
+  </script>
 
 </body>
 </html>

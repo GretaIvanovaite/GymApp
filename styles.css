@@ -377,6 +377,31 @@ form input[type="submit"] {
     background-color: var(--bg-button);
     color: var(--font-colour-bright);
 }
+/* inline validation error on the booking form */
+.form-error {
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-small);
+  color: var(--font-colour-bright);
+  border-left: 3px solid var(--font-colour-bright);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-colour-tile);
+  border-radius: var(--border-radius-small);
+  width: 90%;
+}
+
+/* prototype notice shown after booking form is submitted */
+#prototype_notice {
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--font-colour-primary);
+  border-left: 4px solid var(--bg-button);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-colour-tile);
+  border-radius: var(--border-radius-small);
+  width: 90%;
+}
+
 /* cancel link styled as a subtle secondary button */
 .cancel-btn {
   display: inline-block;

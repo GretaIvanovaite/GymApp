@@ -166,19 +166,22 @@ function renderWorkout(w) {
 
 // seed sample exercises and workouts once on first load.
 // localstorage flag prevents this running again across sessions.
-async function seedIfEmpty() {
-  if (localStorage.getItem("gymapp_seeded")) return;
+// number of exercises in the seed dataset — used to detect a partial seed run
+var SEED_COUNT = 9;
 
-  // clean up any untitled workouts from testing before marking as seeded
+async function seedIfEmpty() {
+  var existing = await getAll("exercises");
+  // all seed exercises present — nothing to do
+  if (existing.length >= SEED_COUNT) return;
+
+  // clear any partial data left from a failed previous seed before re-seeding
+  for (var i = 0; i < existing.length; i++) {
+    await deleteRecord("exercises", existing[i].id);
+  }
   var allWorkouts = await getAll("workouts");
   for (var i = 0; i < allWorkouts.length; i++) {
-    if (allWorkouts[i].name === "Untitled workout") {
-      await deleteRecord("workouts", allWorkouts[i].id);
-    }
+    await deleteRecord("workouts", allWorkouts[i].id);
   }
-
-  var existing = await getAll("exercises");
-  if (existing.length === 0) {
 
   var now = new Date().toISOString();
 
@@ -236,8 +239,6 @@ async function seedIfEmpty() {
   await saveRecord("workouts", { name: "Leg Day",         exercises: [e5],     savedAt: now });
   await saveRecord("workouts", { name: "Cardio Blast",    exercises: [e6, e7], savedAt: now });
   await saveRecord("workouts", { name: "Active Recovery", exercises: [e8, e9], savedAt: now });
-  }
-  localStorage.setItem("gymapp_seeded", "1");
 }
 
 // load and render homepage lists on dom ready
@@ -360,6 +361,7 @@ if (exerciseForm) {
 
   exerciseForm.addEventListener("submit", async function(e) {
     e.preventDefault();
+    if (!exerciseForm.checkValidity()) { exerciseForm.reportValidity(); return; }
     var data = {
       name:               document.getElementById("exercise_name")?.value || "",
       type:               document.getElementById("exercise_type")?.value || "",
@@ -447,6 +449,7 @@ if (workoutForm) {
 
   workoutForm.addEventListener("submit", async function(e) {
     e.preventDefault();
+    if (!workoutForm.checkValidity()) { workoutForm.reportValidity(); return; }
     var nameInput = document.getElementById("workout_name");
     if (!nameInput || !nameInput.value.trim()) return;
     var data = {

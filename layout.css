@@ -212,7 +212,8 @@ nav a {
 }
 
 #create_exercise label,
-#create_workout label {
+#create_workout label,
+#consultation_form label {
   display: block;
   padding: var(--padding-top-bottom);
 }
@@ -220,7 +221,10 @@ nav a {
 #create_exercise input,
 #create_workout input[type="text"],
 #create_exercise textarea,
-#create_workout textarea {
+#create_workout textarea,
+#consultation_form input:not([type="submit"]),
+#consultation_form select,
+#consultation_form textarea {
     width: 90%;
 }
 
@@ -262,12 +266,14 @@ fieldset > legend {
   font-weight: var(--font-weight-regular);
 }
 
-#create_exercise select {
+#create_exercise select,
+#consultation_form select {
     padding: var(--padding-small);
 }
 
 #create_exercise input[type="submit"],
-#create_workout input[type="submit"] {
+#create_workout input[type="submit"],
+#consultation_form input[type="submit"] {
     display: block;
     padding: var(--padding-small);
     border: var(--border-button);
