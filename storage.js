@@ -152,12 +152,89 @@ function renderWorkout(w) {
   return li;
 }
 
+// seed sample exercises and workouts once on first load.
+// localstorage flag prevents this running again across sessions.
+async function seedIfEmpty() {
+  if (localStorage.getItem("gymapp_seeded")) return;
+
+  // clean up any untitled workouts from testing before marking as seeded
+  var allWorkouts = await getAll("workouts");
+  for (var i = 0; i < allWorkouts.length; i++) {
+    if (allWorkouts[i].name === "Untitled workout") {
+      await deleteRecord("workouts", allWorkouts[i].id);
+    }
+  }
+
+  var existing = await getAll("exercises");
+  if (existing.length === 0) {
+
+  var now = new Date().toISOString();
+
+  // exercises
+  var e1 = await saveRecord("exercises", {
+    name: "Pull Ups", type: "calisthenics",
+    sets: "4", reps: "8", rest_time: "90",
+    notes: "Full range of motion, dead hang between reps", savedAt: now
+  });
+  var e2 = await saveRecord("exercises", {
+    name: "Barbell Deadlift", type: "weights",
+    sets: "4", reps: "5", rest_time: "180", weight_kg: "80",
+    notes: "Neutral spine, drive through the floor", savedAt: now
+  });
+  var e3 = await saveRecord("exercises", {
+    name: "Push Ups", type: "calisthenics",
+    sets: "3", reps: "15", rest_time: "60",
+    notes: "Keep elbows tucked at 45 degrees", savedAt: now
+  });
+  var e4 = await saveRecord("exercises", {
+    name: "Barbell Bench Press", type: "weights",
+    sets: "3", reps: "8", rest_time: "120", weight_kg: "60",
+    notes: "Retract shoulder blades, controlled descent", savedAt: now
+  });
+  var e5 = await saveRecord("exercises", {
+    name: "Barbell Squat", type: "weights",
+    sets: "4", reps: "6", rest_time: "120", weight_kg: "70",
+    notes: "Break parallel, knees track over toes", savedAt: now
+  });
+  var e6 = await saveRecord("exercises", {
+    name: "5K Run", type: "cardio",
+    duration: "28", distance_km: "5", target_pace: "5:36",
+    cardio_intensity: "moderate", savedAt: now
+  });
+  var e7 = await saveRecord("exercises", {
+    name: "HIIT Sprints", type: "hiit",
+    rounds: "8", work_interval: "30", rest_interval: "15",
+    includes_weights: null, savedAt: now
+  });
+  var e8 = await saveRecord("exercises", {
+    name: "Plank", type: "core",
+    sets: "4", hold_time: "60", rest_time: "45",
+    notes: "Squeeze glutes and brace core throughout", savedAt: now
+  });
+  var e9 = await saveRecord("exercises", {
+    name: "Hip Flexor Flow", type: "mobility",
+    body_part: "hips", mobility_duration: "20", hold_time_stretch: "30",
+    mobility_intensity: "light",
+    notes: "Move slowly, never force the stretch", savedAt: now
+  });
+
+  // workouts referencing the exercise ids returned above
+  await saveRecord("workouts", { name: "Pull Day",        exercises: [e1, e2], savedAt: now });
+  await saveRecord("workouts", { name: "Push Day",        exercises: [e3, e4], savedAt: now });
+  await saveRecord("workouts", { name: "Leg Day",         exercises: [e5],     savedAt: now });
+  await saveRecord("workouts", { name: "Cardio Blast",    exercises: [e6, e7], savedAt: now });
+  await saveRecord("workouts", { name: "Active Recovery", exercises: [e8, e9], savedAt: now });
+  }
+  localStorage.setItem("gymapp_seeded", "1");
+}
+
 // load and render homepage lists on dom ready
 var exerciseList = document.getElementById("exercise-list");
 var workoutList  = document.getElementById("workout-list");
 
 if (exerciseList || workoutList) {
   (async function() {
+    await seedIfEmpty();
     if (exerciseList) {
       var exercises = await getAll("exercises");
       exerciseList.innerHTML = "";
@@ -358,8 +435,9 @@ if (workoutForm) {
   workoutForm.addEventListener("submit", async function(e) {
     e.preventDefault();
     var nameInput = document.getElementById("workout_name");
+    if (!nameInput || !nameInput.value.trim()) return;
     var data = {
-      name:      nameInput && nameInput.value.trim() ? nameInput.value.trim() : "Untitled workout",
+      name:      nameInput.value.trim(),
       exercises: Array.from(document.querySelectorAll(".exercise_option:checked")).map(function(cb) { return Number(cb.value); }),
       savedAt:   new Date().toISOString(),
     };
@@ -394,25 +472,37 @@ function showMediaInElement(el, src, type) {
   if (media) el.appendChild(media);
 }
 
-// build a detailed exercise list item for the workout details page
-function renderExerciseDetail(ex) {
-  var li   = document.createElement("li");
-  var row  = document.createElement("div");
-  var info = document.createElement("div");
-  var p    = document.createElement("p");
-  var span = document.createElement("span");
-  var a    = document.createElement("a");
-  row.className    = "exercise_detail_row";
-  info.className   = "exercise_detail_info";
-  p.textContent    = ex.name;
-  span.className   = "exercise_type";
-  span.textContent = ex.type;
-  a.href           = "edit-exercise.html?id=" + ex.id;
-  a.textContent    = "Edit";
+// build a detailed exercise list item for the workout details page.
+// onRemove is an optional callback called with the exercise id when remove is clicked.
+function renderExerciseDetail(ex, onRemove) {
+  var li      = document.createElement("li");
+  var row     = document.createElement("div");
+  var info    = document.createElement("div");
+  var actions = document.createElement("div");
+  var p       = document.createElement("p");
+  var span    = document.createElement("span");
+  var a       = document.createElement("a");
+  row.className     = "exercise_detail_row";
+  info.className    = "exercise_detail_info";
+  actions.className = "exercise_detail_actions";
+  p.textContent     = ex.name;
+  span.className    = "exercise_type";
+  span.textContent  = ex.type;
+  a.href            = "edit-exercise.html?id=" + ex.id;
+  a.textContent     = "Edit";
   info.appendChild(p);
   info.appendChild(span);
+  actions.appendChild(a);
+  if (onRemove) {
+    var removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.className   = "remove-btn";
+    removeBtn.setAttribute("aria-label", "Remove " + ex.name + " from workout");
+    removeBtn.addEventListener("click", function() { onRemove(ex.id); });
+    actions.appendChild(removeBtn);
+  }
   row.appendChild(info);
-  row.appendChild(a);
+  row.appendChild(actions);
   li.appendChild(row);
   // build a stat summary line based on the exercise type
   var statParts = [];
@@ -473,7 +563,85 @@ if (deleteBtn) {
   });
 }
 
-// load workout details: fetch the workout, then fetch each exercise by id in order
+// load (or re-load) all workout details — called on page load and after any change
+async function loadWorkoutDetails(detailId) {
+  var workout = await getRecord("workouts", detailId);
+  if (!workout) {
+    if (workoutTitle) workoutTitle.textContent = "Workout not found";
+    return;
+  }
+
+  if (workoutTitle) workoutTitle.textContent = workout.name;
+
+  if (workoutSubtitle) {
+    var n = workout.exercises.length;
+    workoutSubtitle.textContent = n + (n === 1 ? " exercise" : " exercises");
+  }
+
+  // only inject media once to avoid duplicating it on re-renders
+  if (workout.media && workoutMediaDiv && workoutMediaDiv.children.length === 0) {
+    workoutMediaDiv.className = "workout_media_detail";
+    showMediaInElement(workoutMediaDiv, workout.media, workout.mediaType);
+  }
+
+  // render exercises currently in this workout with remove buttons
+  var detailExList = document.getElementById("exercise-list");
+  if (detailExList) {
+    detailExList.innerHTML = "";
+    if (workout.exercises.length === 0) {
+      var li = document.createElement("li");
+      var p  = document.createElement("p");
+      p.textContent = "No exercises in this workout.";
+      li.appendChild(p);
+      detailExList.appendChild(li);
+    } else {
+      // sequential await preserves display order matching the saved exercise array
+      for (var i = 0; i < workout.exercises.length; i++) {
+        var ex = await getRecord("exercises", workout.exercises[i]);
+        if (ex) {
+          detailExList.appendChild(renderExerciseDetail(ex, async function(exId) {
+            // remove this exercise from the workout and re-render
+            workout.exercises = workout.exercises.filter(function(id) { return id !== exId; });
+            await updateRecord("workouts", workout);
+            loadWorkoutDetails(detailId);
+          }));
+        }
+      }
+    }
+  }
+
+  // render exercises from the library not yet in this workout as checkboxes
+  var addContainer = document.getElementById("add-exercise-checkboxes");
+  if (addContainer) {
+    var allExercises = await getAll("exercises");
+    var notInWorkout = allExercises.filter(function(ex) {
+      return workout.exercises.indexOf(ex.id) === -1;
+    });
+    addContainer.innerHTML = "";
+    if (notInWorkout.length === 0) {
+      var msg = document.createElement("p");
+      msg.textContent = "All exercises are already in this workout.";
+      addContainer.appendChild(msg);
+    } else {
+      notInWorkout.forEach(function(ex) {
+        var div   = document.createElement("div");
+        var input = document.createElement("input");
+        var label = document.createElement("label");
+        div.className  = "checkbox_row";
+        input.type     = "checkbox";
+        input.className = "add_exercise_option";
+        input.id       = "add_ex_" + ex.id;
+        input.value    = ex.id;
+        label.htmlFor  = "add_ex_" + ex.id;
+        label.textContent = ex.name;
+        div.appendChild(input);
+        div.appendChild(label);
+        addContainer.appendChild(div);
+      });
+    }
+  }
+}
+
 if (workoutTitle) {
   var detailParams = new URLSearchParams(window.location.search);
   var detailId     = detailParams.get("id") ? Number(detailParams.get("id")) : null;
@@ -481,42 +649,19 @@ if (workoutTitle) {
   if (!detailId) {
     workoutTitle.textContent = "Workout not found";
   } else {
-    (async function() {
-      var workout = await getRecord("workouts", detailId);
-      if (!workout) {
-        workoutTitle.textContent = "Workout not found";
-        return;
-      }
+    loadWorkoutDetails(detailId);
 
-      workoutTitle.textContent = workout.name;
-
-      if (workoutSubtitle) {
-        var n = workout.exercises.length;
-        workoutSubtitle.textContent = n + (n === 1 ? " exercise" : " exercises");
-      }
-
-      if (workout.media && workoutMediaDiv) {
-        workoutMediaDiv.className = "workout_media_detail";
-        showMediaInElement(workoutMediaDiv, workout.media, workout.mediaType);
-      }
-
-      var detailExList = document.getElementById("exercise-list");
-      if (detailExList) {
-        detailExList.innerHTML = "";
-        if (workout.exercises.length === 0) {
-          var li = document.createElement("li");
-          var p  = document.createElement("p");
-          p.textContent = "No exercises in this workout.";
-          li.appendChild(p);
-          detailExList.appendChild(li);
-        } else {
-          // sequential await preserves display order matching the saved exercise array
-          for (var i = 0; i < workout.exercises.length; i++) {
-            var ex = await getRecord("exercises", workout.exercises[i]);
-            if (ex) detailExList.appendChild(renderExerciseDetail(ex));
-          }
-        }
-      }
-    })();
+    // add selected exercises to the workout and re-render
+    var addExBtn = document.getElementById("add-exercises-btn");
+    if (addExBtn) {
+      addExBtn.addEventListener("click", async function() {
+        var checked = Array.from(document.querySelectorAll(".add_exercise_option:checked"));
+        if (checked.length === 0) return;
+        var workout = await getRecord("workouts", detailId);
+        checked.forEach(function(cb) { workout.exercises.push(Number(cb.value)); });
+        await updateRecord("workouts", workout);
+        loadWorkoutDetails(detailId);
+      });
+    }
   }
 }
