@@ -102,6 +102,18 @@ function showMediaPreview(previewId, src, type) {
   if (el) { preview.innerHTML = ""; preview.appendChild(el); }
 }
 
+// expand a textarea to fit its content, called on input and after pre-fill
+function autoResize(el) {
+  el.style.height = "auto";
+  el.style.height = el.scrollHeight + "px";
+}
+
+// attach auto-resize to all textareas with the auto-resize class on this page
+document.querySelectorAll("textarea.auto-resize").forEach(function(el) {
+  el.addEventListener("input", function() { autoResize(el); });
+  autoResize(el);
+});
+
 // wire up a file input to show a live preview on selection
 function setupMediaPreview(inputId, previewId) {
   var input = document.getElementById(inputId);
@@ -232,7 +244,8 @@ async function seedIfEmpty() {
 var exerciseList = document.getElementById("exercise-list");
 var workoutList  = document.getElementById("workout-list");
 
-if (exerciseList || workoutList) {
+// workoutList only exists on the homepage, so this guards against running on workout-details
+if (workoutList) {
   (async function() {
     await seedIfEmpty();
     if (exerciseList) {
@@ -328,9 +341,9 @@ if (exerciseForm) {
       var nameEl  = document.getElementById("exercise_name");
       var typeEl  = document.getElementById("exercise_type");
       var notesEl = document.getElementById("exercise_notes");
-      if (nameEl)  nameEl.value  = ex.name;
-      if (typeEl)  { typeEl.value = ex.type; updateTypeFields(ex.type); }
-      if (notesEl) notesEl.value = ex.notes || "";
+      if (nameEl)  { nameEl.value  = ex.name;        autoResize(nameEl); }
+      if (typeEl)  { typeEl.value  = ex.type;         updateTypeFields(ex.type); }
+      if (notesEl) { notesEl.value = ex.notes || "";  autoResize(notesEl); }
       var fields = ["sets","reps","rest_time","weight_kg","hold_time","duration",
                     "distance_km","target_pace","cardio_intensity","rounds",
                     "work_interval","rest_interval","body_part","mobility_duration",

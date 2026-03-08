@@ -356,8 +356,15 @@ form select {
     border: var(--border-button);
 }
 
-form input:not([type="submit"]):not([type="checkbox"]):not([type="file"]) {
+form input:not([type="submit"]):not([type="checkbox"]):not([type="file"]),
+form textarea {
     padding: var(--spacing-lg) var(--spacing-md);
+}
+
+/* required asterisk also works for textareas */
+label:has(+ textarea[required])::after {
+  content: " *";
+  color: var(--font-colour-bright);
 }
 
 form select {
@@ -370,6 +377,27 @@ form input[type="submit"] {
     background-color: var(--bg-button);
     color: var(--font-colour-bright);
 }
+/* cancel link styled as a subtle secondary button */
+.cancel-btn {
+  display: inline-block;
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-base);
+  color: var(--font-colour-secondary);
+  border: 1px solid transparent;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-base);
+  margin-top: var(--spacing-sm);
+}
+
+.cancel-btn:hover,
+.cancel-btn:focus-visible {
+  color: var(--font-colour-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: none;
+}
+
 /* Media preview */
 #exercise_media_preview img,
 #exercise_media_preview video,

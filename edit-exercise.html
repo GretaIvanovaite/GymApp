@@ -30,7 +30,7 @@
 
     <form id="create_exercise" novalidate>
       <label for="exercise_name">Exercise name</label>
-      <input id="exercise_name" type="text" placeholder="Push ups, Treadmill run, Deadlifts..." required autocomplete="off">
+      <textarea id="exercise_name" class="auto-resize" placeholder="Push ups, Treadmill run, Deadlifts..." required autocomplete="off" rows="1"></textarea>
 
       <label for="exercise_type">Type of exercise</label>
       <select id="exercise_type" required>
@@ -124,7 +124,7 @@
       </fieldset>
 
       <label for="exercise_notes">Notes</label>
-      <input id="exercise_notes" type="text" placeholder="Any notes...">
+      <textarea id="exercise_notes" class="auto-resize" placeholder="Any notes..." rows="1"></textarea>
 
       <label for="exercise_media">Photo / Video</label>
       <input id="exercise_media" type="file" accept="image/*,video/*">

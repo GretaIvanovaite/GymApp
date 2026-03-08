@@ -218,8 +218,48 @@ nav a {
 }
 
 #create_exercise input,
-#create_workout input[type="text"] {
+#create_workout input[type="text"],
+#create_exercise textarea,
+#create_workout textarea {
     width: 90%;
+}
+
+/* textarea matches text input appearance, starts at one line and grows */
+form textarea {
+  border-radius: var(--border-radius-base);
+  font-size: var(--font-size-small);
+  background: var(--bg-colour-tile);
+  color: var(--font-colour-primary);
+  font-weight: var(--font-weight-medium);
+  border: var(--border-button);
+  font-family: var(--font-sans-serif);
+  resize: none;
+  overflow: hidden;
+  min-height: 2.8rem;
+  display: block;
+}
+
+/* fieldset legend styled as a sub-heading */
+fieldset {
+  margin-top: var(--spacing-xl);
+}
+
+fieldset > legend {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-base);
+  color: var(--font-colour-primary);
+  padding-bottom: var(--spacing-md);
+}
+
+/* checkbox labels should not inherit the top padding from the form label rule */
+.checkbox_row label {
+  padding: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-regular);
 }
 
 #create_exercise select {
