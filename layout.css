@@ -45,6 +45,39 @@
     --nav-height: 64px;
 }
 
+/* skip link - hidden off-screen until focused by keyboard */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--spacing-lg);
+  z-index: 200;
+  border: none;
+}
+
+.skip-link:focus-visible {
+  top: var(--spacing-md);
+}
+
+/* screen reader only - removes from visual flow, keeps in accessibility tree */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* fieldset reset */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -178,12 +211,14 @@ nav a {
   padding: var(--spacing-sm) var(--spacing-lg);
 }
 
-#create_exercise label {
+#create_exercise label,
+#create_workout label {
   display: block;
   padding: var(--padding-top-bottom);
 }
 
-#create_exercise input{
+#create_exercise input,
+#create_workout input[type="text"] {
     width: 90%;
 }
 
@@ -206,6 +241,8 @@ input[type="checkbox"] {
   border-radius: var(--border-radius-small);
   width: 2rem;
   height: 2rem;
+  display: grid;
+  place-content: center;
 }
 
 input[type="checkbox"]:hover {

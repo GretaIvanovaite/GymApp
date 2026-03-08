@@ -104,12 +104,24 @@ input[type="checkbox"]:hover,
 input[type="checkbox"]:focus-visible,
 input[type="checkbox"]:focus-within {
   background-color: var(--font-colour-bright);
-  color: var(--bg-colour);
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--bg-colour-tile);
+}
+
+input[type="checkbox"]:checked:hover,
+input[type="checkbox"]:checked:focus-visible,
+input[type="checkbox"]:checked:focus-within {
+  background-color: var(--bg-colour-tile);
 }
 
 input[type="checkbox"]:checked::after {
-    content: "✓";
-    color: var(--font-colour-primary);
+  content: "✓";
+  color: var(--font-colour-bright);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
 }
 
 
@@ -191,6 +203,36 @@ section > a {
   align-self: center;
 }
 
+/* Workout title row with delete button */
+.workout_title_row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.delete-btn {
+  flex-shrink: 0;
+  background-color: transparent;
+  color: #ff4d4d;
+  border: 1px solid rgba(255, 77, 77, 0.4);
+  border-radius: var(--border-radius-base);
+  font-family: var(--font-sans-serif);
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-base);
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+}
+
+.delete-btn:hover,
+.delete-btn:focus-visible {
+  background-color: #ff4d4d;
+  color: var(--bg-colour);
+  outline: none;
+}
+
 /* Exercises */
 #exercise-list li {
   background: var(--bg-colour-tile);
@@ -229,6 +271,27 @@ form label {
   letter-spacing: var(--letter-spacing-base);
 }
 
+/* Required field asterisk */
+label:has(+ input[required])::after,
+label:has(+ select[required])::after {
+  content: " *";
+  color: var(--font-colour-bright);
+}
+
+/* Narrow number inputs */
+input.input-narrow {
+  width: 8rem;
+}
+
+/* Number input spinner buttons */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+  background-color: var(--bg-button);
+  border-left: var(--border-button);
+  cursor: pointer;
+}
+
 form input,
 form select {
     border-radius: var(--border-radius-base);
@@ -239,9 +302,122 @@ form select {
     border: var(--border-button);
 }
 
+form input:not([type="submit"]):not([type="checkbox"]):not([type="file"]) {
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+form select {
+    padding: var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg) var(--spacing-md);
+}
+
 form input[type="submit"] {
     font-family: var(--font-sans-serif);
     font-weight: var(--font-weight-medium);
     background-color: var(--bg-button);
     color: var(--font-colour-bright);
+}
+/* Media preview */
+#exercise_media_preview img,
+#exercise_media_preview video,
+#workout_media_preview img,
+#workout_media_preview video {
+  width: 100%;
+  border-radius: var(--border-radius-base);
+  margin-top: var(--spacing-sm);
+}
+/* Workout exercise checkbox rows */
+.checkbox_row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+}
+/* Workout details media */
+.workout_media_detail {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.workout_media_detail img,
+.workout_media_detail video {
+  width: 100%;
+  border-radius: var(--border-radius-base);
+}
+
+/* Exercise media inside the details list */
+.exercise_media_detail {
+  width: 100%;
+  margin-top: var(--spacing-sm);
+}
+
+.exercise_media_detail img,
+.exercise_media_detail video {
+  width: 100%;
+  border-radius: var(--border-radius-small);
+}
+
+#exercise-list li:has(.exercise_detail_row) {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#exercise-list li:has(.exercise_media_detail) {
+  flex-wrap: wrap;
+}
+/* File input — text area looks like a text field, button styled separately */
+input[type="file"] {
+  display: block;
+  width: 90%;
+  background: var(--bg-colour-tile);
+  color: var(--font-colour-primary);
+  border: var(--border-button);
+  border-radius: var(--border-radius-base);
+  padding: var(--spacing-lg) var(--spacing-md);
+  font-family: var(--font-sans-serif);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  cursor: default;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: var(--bg-button);
+  border: none;
+  border-right: var(--border-button);
+  border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
+  color: var(--font-colour-bright);
+  font-family: var(--font-sans-serif);
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-base);
+  cursor: pointer;
+  padding: var(--spacing-lg) var(--spacing-md);
+  margin-right: var(--spacing-md);
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--font-colour-bright);
+  color: var(--bg-colour);
+}
+
+/* Exercise detail row layout */
+.exercise_detail_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.exercise_detail_info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+/* Exercise stats and notes on workout details */
+.exercise_stats,
+.exercise_notes {
+  width: 100%;
+  font-size: var(--font-size-smaller);
+  color: var(--font-colour-secondary);
+  margin-top: var(--spacing-xs);
 }

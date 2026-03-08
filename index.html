@@ -7,24 +7,28 @@
   <title>GymApp — Home</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="assets/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
 
+  <!-- skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">skip to main content</a>
+
   <header role="banner">
-    <a href="index.html">GymApp
-      <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30rem">
-      <img src="assets/logo_bright.png" alt="GymApp logo - barbell with a clock" id="logo_default" width="30rem">
+    <!-- default and hover logos swapped via css -->
+    <a href="index.html" aria-current="page">GymApp
+      <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
+      <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
     </a>
     <a href="book-consultation.html" class="booking">Book consultation</a>
   </header>
 
   <main id="main-content">
-    <section aria-label="Greeting">
+    <section aria-label="greeting">
       <h1>Let's get to it!</h1>
     </section>
 
-    <section aria-label="Quick actions">
+    <section aria-label="quick actions">
       <h2>Quick actions</h2>
       <ul>
         <li><a href="add-exercise.html">New Exercise</a></li>
@@ -32,50 +36,27 @@
       </ul>
     </section>
 
-    <section aria-label="Workout schedule">
+    <section aria-label="workout schedule">
       <h2>Workout schedule</h2>
       <a href="create-workout.html">Create</a>
-      <ul id="workout-list">
-        <li>
-            <a class="workout-tile" href="workout-details.html">
-                <section>
-                    <h3 class="workout_title">Full body</h3>
-                    <p class="duration">30 min</p>
-                </section>
-                <p class="rank">5</p>
-            </a>
-        </li>
-        <li>
-            <a class="workout-tile" href="workout-details.html">
-                <section>
-                    <h3 class="workout_title">Arms strenghtening</h3>
-                    <p class="duration">15 min</p>
-                </section>
-                <p class="rank">3</p>
-            </a>
-        </li>
-      </ul>
+      <!-- dynamically populated by storage.js, aria-live announces changes to screen readers -->
+      <ul id="workout-list" aria-live="polite"><li><p>No workouts yet.</p></li></ul>
     </section>
 
-    <section aria-label="Exercise library">
+    <section aria-label="exercise library">
       <h2>Exercise Library</h2>
       <a href="add-exercise.html">Add</a>
-      <ul id="exercise-list">
-        <li>
-            <p>Pull ups</p>
-            <span class="exercise_type">Calisthenics</span>
-            <a href="edit-exercise">Edit</a>
-        </li>
-      </ul>
+      <!-- dynamically populated by storage.js, aria-live announces changes to screen readers -->
+      <ul id="exercise-list" aria-live="polite"><li><p>No exercises yet.</p></li></ul>
     </section>
-
   </main>
 
-  <nav aria-label="Main navigation">
+  <nav aria-label="main navigation">
     <a href="index.html" aria-current="page">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>
   </nav>
 
+  <script src="storage.js"></script>
 </body>
 </html>

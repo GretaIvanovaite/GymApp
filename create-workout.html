@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GymApp — Your digital workout planner" />
+  <meta name="description" content="GymApp — Create a new workout" />
   <title>GymApp — Create workout</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="assets/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
 
+  <!-- skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">skip to main content</a>
+
   <header role="banner">
-    <a href="index.html">GymApp</a>
+    <!-- default and hover logos swapped via css -->
+    <a href="index.html">GymApp
+      <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
+      <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
+    </a>
     <a href="book-consultation.html" class="booking">Book consultation</a>
   </header>
 
@@ -21,18 +28,30 @@
       <h1>Create workout</h1>
     </section>
 
-    <form id="create_workout">
-        <input class="exercise_option" type="checkbox" id="pull_ups">
-        <label for="pull_ups">Pull ups</label>
-        <input type="submit" value="Select">
+    <form id="create_workout" novalidate>
+      <label for="workout_name">Workout name</label>
+      <input id="workout_name" type="text" placeholder="Full body, Leg day..." required autocomplete="off">
+
+      <!-- exercise checkboxes populated dynamically from indexeddb -->
+      <fieldset>
+        <legend>Exercises</legend>
+        <div id="exercise_checkboxes" aria-live="polite"></div>
+      </fieldset>
+
+      <label for="workout_media">Photo / Video</label>
+      <input id="workout_media" type="file" accept="image/*,video/*">
+      <div id="workout_media_preview" aria-live="polite"></div>
+
+      <input type="submit" value="Save">
     </form>
   </main>
 
-  <nav aria-label="Main navigation">
-    <a href="index.html" aria-current="page">Home</a>
+  <nav aria-label="main navigation">
+    <a href="index.html">Home</a>
     <a href="add-exercise.html">Add exercise</a>
-    <a href="create-workout.html">Add workout</a>
+    <a href="create-workout.html" aria-current="page">Add workout</a>
   </nav>
 
+  <script src="storage.js"></script>
 </body>
 </html>

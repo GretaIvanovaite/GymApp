@@ -7,53 +7,49 @@
   <title>GymApp — Workout Details</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="assets/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
 
+  <!-- skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">skip to main content</a>
+
   <header role="banner">
-    <a href="index.html">GymApp</a>
+    <!-- default and hover logos swapped via css -->
+    <a href="index.html">GymApp
+      <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
+      <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
+    </a>
     <a href="book-consultation.html" class="booking">Book consultation</a>
   </header>
 
   <main id="main-content">
     <section>
-      <h1>Full body</h1>
-      <p>30 min &mdash; Rank 5</p>
+      <div class="workout_title_row">
+        <div>
+          <h1 id="workout-title">Loading...</h1>
+          <p id="workout-subtitle"></p>
+        </div>
+        <button id="delete-workout" class="delete-btn" aria-label="Delete workout">Delete</button>
+      </div>
     </section>
 
-    <section aria-label="Exercises in this workout">
+    <!-- workout media injected here by storage.js -->
+    <div id="workout-media"></div>
+
+    <section aria-label="exercises in this workout">
       <h2>Exercises</h2>
-      <ul id="exercise-list">
-        <li>
-          <p>Pull ups</p>
-          <span class="exercise_type">Calisthenics</span>
-          <a href="edit-exercise.html">Edit</a>
-        </li>
-        <li>
-          <p>Push ups</p>
-          <span class="exercise_type">Calisthenics</span>
-          <a href="edit-exercise.html">Edit</a>
-        </li>
-        <li>
-          <p>Barbell squat</p>
-          <span class="exercise_type">Strength</span>
-          <a href="edit-exercise.html">Edit</a>
-        </li>
-        <li>
-          <p>Plank</p>
-          <span class="exercise_type">Core</span>
-          <a href="edit-exercise.html">Edit</a>
-        </li>
-      </ul>
+      <!-- dynamically populated, aria-live announces when exercises load -->
+      <ul id="exercise-list" aria-live="polite"><li><p>Loading exercises...</p></li></ul>
     </section>
   </main>
 
-  <nav aria-label="Main navigation">
+  <nav aria-label="main navigation">
     <a href="index.html">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>
   </nav>
 
+  <script src="storage.js"></script>
 </body>
 </html>

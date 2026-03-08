@@ -7,13 +7,20 @@
   <title>GymApp — Book Consultation</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="assets/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
 
+  <!-- skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">skip to main content</a>
+
   <header role="banner">
-    <a href="index.html">GymApp</a>
-    <a href="book-consultation.html" class="booking">Book consultation</a>
+    <!-- default and hover logos swapped via css -->
+    <a href="index.html">GymApp
+      <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
+      <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
+    </a>
+    <a href="book-consultation.html" class="booking" aria-current="page">Book consultation</a>
   </header>
 
   <main id="main-content">
@@ -21,20 +28,19 @@
       <h1>Book a consultation</h1>
     </section>
 
-    <form id="create_exercise">
-
+    <form id="consultation_form" novalidate>
       <label for="name">Your name</label>
-      <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+      <input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name">
 
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+      <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
 
       <label for="trainer">Trainer</label>
       <select id="trainer" name="trainer">
         <option value="">Select a trainer</option>
-        <option value="alex">Alex — Strength & Conditioning</option>
+        <option value="alex">Alex — Strength &amp; Conditioning</option>
         <option value="morgan">Morgan — Calisthenics</option>
-        <option value="jordan">Jordan — Mobility & Recovery</option>
+        <option value="jordan">Jordan — Mobility &amp; Recovery</option>
       </select>
 
       <label for="date">Preferred date</label>
@@ -55,11 +61,10 @@
       <input type="text" id="notes" name="notes" placeholder="Any injuries, goals or questions...">
 
       <input type="submit" value="Book">
-
     </form>
   </main>
 
-  <nav aria-label="Main navigation">
+  <nav aria-label="main navigation">
     <a href="index.html">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>

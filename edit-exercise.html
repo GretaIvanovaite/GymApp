@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GymApp — Edit exercise" />
+  <meta name="description" content="GymApp — Edit an exercise" />
   <title>GymApp — Edit Exercise</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="assets/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
 
+  <!-- skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">skip to main content</a>
+
   <header role="banner">
-    <a href="index.html">GymApp</a>
+    <!-- default and hover logos swapped via css -->
+    <a href="index.html">GymApp
+      <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
+      <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
+    </a>
     <a href="book-consultation.html" class="booking">Book consultation</a>
   </header>
 
@@ -21,39 +28,118 @@
       <h1>Edit exercise</h1>
     </section>
 
-    <form id="create_exercise">
-
+    <form id="create_exercise" novalidate>
       <label for="exercise_name">Exercise name</label>
-      <input type="text" id="exercise_name" name="exercise_name" value="Pull ups" required>
+      <input id="exercise_name" type="text" placeholder="Push ups, Treadmill run, Deadlifts..." required autocomplete="off">
 
-      <label for="type">Type</label>
-      <select id="type" name="type">
-        <option value="calisthenics" selected>Calisthenics</option>
-        <option value="strength">Strength</option>
+      <label for="exercise_type">Type of exercise</label>
+      <select id="exercise_type" required>
+        <option value="">Exercise type</option>
+        <option value="calisthenics">Calisthenics</option>
+        <option value="weights">Weights</option>
         <option value="cardio">Cardio</option>
         <option value="core">Core</option>
+        <option value="hiit">HIIT</option>
         <option value="mobility">Mobility</option>
       </select>
 
-      <label for="sets">Sets</label>
-      <input type="number" id="sets" name="sets" value="3" min="1" max="20">
+      <!-- type-conditional fieldsets: hidden removes them from the accessibility tree entirely -->
 
-      <label for="reps">Reps</label>
-      <input type="number" id="reps" name="reps" value="10" min="1" max="100">
+      <fieldset class="type-fields" data-types="calisthenics weights core" hidden>
+        <legend class="sr-only">sets and reps</legend>
+        <label for="sets">Sets</label>
+        <input type="number" id="sets" name="sets" min="1" max="100" placeholder="e.g. 3" class="input-narrow">
+        <label for="reps">Reps</label>
+        <input type="number" id="reps" name="reps" min="1" max="200" placeholder="e.g. 10" class="input-narrow">
+        <label for="rest_time">Rest time (seconds)</label>
+        <input type="number" id="rest_time" name="rest_time" min="0" max="600" placeholder="e.g. 90" class="input-narrow">
+      </fieldset>
 
-      <label for="notes">Notes</label>
-      <input type="text" id="notes" name="notes" placeholder="Any notes...">
+      <fieldset class="type-fields" data-types="weights" hidden>
+        <legend class="sr-only">weight</legend>
+        <label for="weight_kg">Weight (kg)</label>
+        <input type="number" id="weight_kg" name="weight_kg" min="0" max="1000" step="0.5" placeholder="e.g. 60" class="input-narrow">
+      </fieldset>
+
+      <fieldset class="type-fields" data-types="core" hidden>
+        <legend class="sr-only">hold time</legend>
+        <label for="hold_time">Hold time (seconds)</label>
+        <input type="number" id="hold_time" name="hold_time" min="0" max="3600" placeholder="e.g. 30" class="input-narrow">
+      </fieldset>
+
+      <fieldset class="type-fields" data-types="cardio" hidden>
+        <legend class="sr-only">cardio details</legend>
+        <label for="duration">Duration (minutes)</label>
+        <input type="number" id="duration" name="duration" min="1" max="600" placeholder="e.g. 30" class="input-narrow">
+        <label for="distance_km">Distance (km)</label>
+        <input type="number" id="distance_km" name="distance_km" min="0" max="1000" step="0.1" placeholder="e.g. 5" class="input-narrow">
+        <label for="target_pace">Target pace (min/km)</label>
+        <input type="text" id="target_pace" name="target_pace" placeholder="e.g. 5:30">
+        <label for="cardio_intensity">Intensity</label>
+        <select id="cardio_intensity" name="cardio_intensity">
+          <option value="">Select intensity</option>
+          <option value="low">Low</option>
+          <option value="moderate">Moderate</option>
+          <option value="high">High</option>
+        </select>
+      </fieldset>
+
+      <fieldset class="type-fields" data-types="hiit" hidden>
+        <legend class="sr-only">interval settings</legend>
+        <label for="rounds">Rounds</label>
+        <input type="number" id="rounds" name="rounds" min="1" max="100" placeholder="e.g. 4" class="input-narrow">
+        <label for="work_interval">Work interval (seconds)</label>
+        <input type="number" id="work_interval" name="work_interval" min="1" max="3600" placeholder="e.g. 40" class="input-narrow">
+        <label for="rest_interval">Rest interval (seconds)</label>
+        <input type="number" id="rest_interval" name="rest_interval" min="0" max="3600" placeholder="e.g. 20" class="input-narrow">
+        <div class="checkbox_row">
+          <input type="checkbox" id="includes_weights" name="includes_weights">
+          <label for="includes_weights">Includes weights</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="type-fields" data-types="mobility" hidden>
+        <legend class="sr-only">mobility details</legend>
+        <label for="body_part">Body part focus</label>
+        <select id="body_part" name="body_part">
+          <option value="">Select body part</option>
+          <option value="full_body">Full body</option>
+          <option value="hips">Hips</option>
+          <option value="shoulders">Shoulders</option>
+          <option value="back">Back</option>
+          <option value="legs">Legs</option>
+          <option value="arms">Arms</option>
+        </select>
+        <label for="mobility_duration">Duration (minutes)</label>
+        <input type="number" id="mobility_duration" name="mobility_duration" min="1" max="300" placeholder="e.g. 20" class="input-narrow">
+        <label for="hold_time_stretch">Hold time per stretch (seconds)</label>
+        <input type="number" id="hold_time_stretch" name="hold_time_stretch" min="1" max="300" placeholder="e.g. 30" class="input-narrow">
+        <label for="mobility_intensity">Intensity</label>
+        <select id="mobility_intensity" name="mobility_intensity">
+          <option value="">Select intensity</option>
+          <option value="light">Light</option>
+          <option value="moderate">Moderate</option>
+          <option value="deep">Deep</option>
+        </select>
+      </fieldset>
+
+      <label for="exercise_notes">Notes</label>
+      <input id="exercise_notes" type="text" placeholder="Any notes...">
+
+      <label for="exercise_media">Photo / Video</label>
+      <input id="exercise_media" type="file" accept="image/*,video/*">
+      <div id="exercise_media_preview" aria-live="polite"></div>
 
       <input type="submit" value="Save">
-
     </form>
   </main>
 
-  <nav aria-label="Main navigation">
+  <nav aria-label="main navigation">
     <a href="index.html">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>
   </nav>
 
+  <script src="storage.js"></script>
 </body>
 </html>
