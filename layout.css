@@ -212,13 +212,18 @@ nav a {
 }
 
 #create_exercise label,
-#create_workout label,
 #consultation_form label {
   display: block;
   padding: var(--padding-top-bottom);
 }
 
-#create_exercise input,
+/* workout form labels use a smaller top padding */
+#create_workout label {
+  display: block;
+  padding: var(--spacing-md) 0 var(--spacing-sm);
+}
+
+#create_exercise input:not([type="submit"]),
 #create_workout input[type="text"],
 #create_exercise textarea,
 #create_workout textarea,
@@ -271,14 +276,25 @@ fieldset > legend {
     padding: var(--padding-small);
 }
 
+/* cancel then save, both right-aligned with gap between them */
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+  width: 90%;
+}
+
+.form-actions input[type="submit"] {
+  width: 20%;
+}
+
 #create_exercise input[type="submit"],
 #create_workout input[type="submit"],
 #consultation_form input[type="submit"] {
-    display: block;
     padding: var(--padding-small);
     border: var(--border-button);
-    margin: var(--padding-top-bottom);
-    width: 20%;
     cursor: pointer;
 }
 
@@ -296,7 +312,22 @@ input[type="checkbox"]:hover {
 }
 
 
+/* exercise type icon — filter approximates --font-colour-secondary (#CDE5E1) */
+.exercise_type_icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  object-fit: contain;
+  filter: invert(88%) sepia(14%) saturate(350%) hue-rotate(148deg) brightness(100%);
+}
+
+/* white calendar icon in date inputs */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
 /* Bigger screens */
 @media (min-width: 600px) {
 
 }
+

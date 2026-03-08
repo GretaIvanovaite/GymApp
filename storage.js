@@ -127,18 +127,29 @@ function setupMediaPreview(inputId, previewId) {
 }
 
 // build a homepage exercise list item
+// maps exercise type to its icon asset filename
+var typeIcons = {
+  calisthenics: "assets/calisthenics.png",
+  cardio:       "assets/cardio.png",
+  core:         "assets/core.png",
+  weights:      "assets/weights.png",
+  hiit:         "assets/HIIT.png",
+  mobility:     "assets/mobility.png"
+};
+
 function renderExercise(ex) {
-  var li   = document.createElement("li");
-  var p    = document.createElement("p");
-  var span = document.createElement("span");
-  var a    = document.createElement("a");
-  p.textContent    = ex.name;
-  span.className   = "exercise_type";
-  span.textContent = ex.type;
-  a.href           = "edit-exercise.html?id=" + ex.id;
-  a.textContent    = "Edit";
+  var li  = document.createElement("li");
+  var p   = document.createElement("p");
+  var img = document.createElement("img");
+  var a   = document.createElement("a");
+  p.textContent  = ex.name;
+  img.src        = typeIcons[ex.type] || "";
+  img.alt        = ex.type;
+  img.className  = "exercise_type_icon";
+  a.href         = "edit-exercise.html?id=" + ex.id;
+  a.textContent  = "Edit";
   li.appendChild(p);
-  li.appendChild(span);
+  li.appendChild(img);
   li.appendChild(a);
   return li;
 }
