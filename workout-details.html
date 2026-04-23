@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GymApp — Workout details" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GymApp — Workout details">
   <title>GymApp — Workout Details</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
-
-  <!-- skip link for keyboard users -->
   <a href="#main-content" class="skip-link">skip to main content</a>
-
-  <header role="banner">
-    <!-- default and hover logos swapped via css -->
+  <header>
     <a href="index.html">GymApp
       <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
       <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
     </a>
     <a href="book-consultation.html" class="booking">Book consultation</a>
   </header>
-
   <main id="main-content">
-    <section>
+    <section aria-labelledby="workout-title">
       <div class="workout_title_row">
         <div>
           <h1 id="workout-title">Loading...</h1>
@@ -33,19 +28,15 @@
         <button id="delete-workout" class="delete-btn" aria-label="Delete workout">Delete</button>
       </div>
     </section>
-
-    <!-- workout media injected here by storage.js -->
     <div id="workout-media"></div>
-
-    <section aria-label="exercises in this workout">
-      <h2>Exercises</h2>
-      <!-- dynamically populated, aria-live announces when exercises load -->
-      <ul id="exercise-list" aria-live="polite"><li><p>Loading exercises...</p></li></ul>
+    <section aria-labelledby="exercises-heading">
+      <h2 id="exercises-heading">Exercises</h2>
+      <ul id="exercise-list" aria-live="polite">
+        <li><p>Loading exercises...</p></li>
+      </ul>
     </section>
-
-    <!-- exercises from the library not yet in this workout -->
-    <section aria-label="add exercises to this workout">
-      <h2>Add exercises</h2>
+    <section aria-labelledby="add-exercises-heading">
+      <h2 id="add-exercises-heading">Add exercises</h2>
       <div id="add-exercise-checkboxes" aria-live="polite"></div>
       <div class="form-actions">
         <a href="index.html" class="cancel-btn">Back</a>
@@ -53,13 +44,11 @@
       </div>
     </section>
   </main>
-
   <nav aria-label="main navigation">
     <a href="index.html">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>
   </nav>
-
   <script src="storage.js"></script>
 </body>
 </html>

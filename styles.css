@@ -1,4 +1,3 @@
-/* General styles */
 :root{
     --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     --font-weight-bold: 800;
@@ -27,38 +26,22 @@
     --letter-spacing-less: -0.01rem;
     --letter-spacing-base: 0.1rem;
     --letter-spacing-more: 0.3rem;
-    --padding-small: 0.6rem;
-    --padding-top-bottom: 2rem 0 1rem;
-    --padding-bottom: 0 0 1rem;
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 12px;
-    --spacing-lg: 16px;
-    --spacing-xl: 24px;
-    --spacing-2xl: 32px;
-    --spacing-3xl: 64px;
-    --spacing-4xl: 96px;
-    --border-subtle: 1px solid rgba(255, 255, 255, 0.07);
-    --z-header: 99;
-    --z-nav: 100;
-    --max-width: 480px;
-    --nav-height: 64px;
 }
-
 html {
   font-family: var(--font-sans-serif);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   color: var(--font-colour-primary);
 }
-
 body {
   background-color: var(--bg-colour);
   line-height: var(--line-height-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+ul {
+  list-style: none;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -70,7 +53,6 @@ a {
   border: var(--border-button);
   border-radius: var(--border-radius-base);
 }
-
 a:hover,
 a:focus-within,
 a:focus-visible,
@@ -79,86 +61,22 @@ a:focus-within *,
 a:focus-visible *,
 input[type="submit"]:hover,
 input[type="submit"]:focus-within,
-input[type="submit"]:focus-visible {
+input[type="submit"]:focus-visible,
+button:hover,
+button:focus-visible {
   color: var(--bg-colour) !important;
-  background-color: var(--font-colour-bright);
+  background-color: var(--font-colour-bright) !important;
 }
-
-a #logo_hover {
-  display: none;
+.skip-link {
+  border: none;
 }
-
-a:hover #logo_default,
-a:focus-within #logo_default,
-a:focus-visible #logo_default {
-  display: none;
-}
-
-a:hover #logo_hover,
-a:focus-within #logo_hover,
-a:focus-visible #logo_hover {
-  display:inline;
-}
-
-input[type="checkbox"]:hover,
-input[type="checkbox"]:focus-visible,
-input[type="checkbox"]:focus-within {
-  background-color: var(--font-colour-bright);
-}
-
-input[type="checkbox"]:checked {
-  background-color: var(--bg-colour-tile);
-}
-
-input[type="checkbox"]:checked:hover,
-input[type="checkbox"]:checked:focus-visible,
-input[type="checkbox"]:checked:focus-within {
-  background-color: var(--bg-colour-tile);
-}
-
-input[type="checkbox"]:checked::after {
-  content: "✓";
-  color: var(--font-colour-bright);
-  font-size: var(--font-size-small);
-  font-weight: var(--font-weight-bold);
-  line-height: 1;
-}
-
-
-/* Fonts */
-h1 {
-  font-size: clamp(var(--font-size-large), 7vw, var(--font-size-larger));
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-base);
-  line-height: var(--line-height-base);
-}
-
-h2 {
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-base);
-  text-transform: uppercase;
-  color: var(--font-colour-secondary);
-}
-
-h3 {
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-base);
-}
-
-p {
-  font-size: var(--font-size-small);
-  color: var(--font-colour-secondary);
-}
-
-/* Header */
 header, nav {
   background-color: var(--bg-colour-elements);
 }
-
+header {
+  z-index: var(--z-header);
+  border-radius: var(--border-radius-bottom);
+}
 header a:first-child {
   font-size: var(--font-size-large);
   font-weight: var(--font-weight-bold);
@@ -167,12 +85,46 @@ header a:first-child {
   color: var(--font-colour-bright);
   border: none;
 }
-
 header a.booking {
   font-size: var(--font-size-smaller);
 }
-
-/* Actions */
+header a #logo_hover {
+  display: none;
+}
+header a:hover #logo_default,
+header a:focus-within #logo_default,
+header a:focus-visible #logo_default {
+  display: none;
+}
+header a:hover #logo_hover,
+header a:focus-within #logo_hover,
+header a:focus-visible #logo_hover {
+  display:inline;
+}
+h1 {
+  font-size: clamp(var(--font-size-large), 7vw, var(--font-size-larger));
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-base);
+  line-height: var(--line-height-base);
+}
+h2 {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-base);
+  text-transform: uppercase;
+  color: var(--font-colour-secondary);
+}
+h3 {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-base);
+}
+p {
+  font-size: var(--font-size-small);
+  color: var(--font-colour-secondary);
+}
 section li a {
   font-size: var(--font-size-smaller);
   font-weight: var(--font-weight-medium);
@@ -180,149 +132,38 @@ section li a {
   text-transform: uppercase;
   background-color: var(--bg-colour-elements);
   border: var(--border-button);
-  padding: var(--spacing-sm) var(--spacing-md);
 }
-
-/* quick action tiles — centred text, extra padding forces two-line wrap */
-section[aria-label="quick actions"] li a {
+section[aria-labelledby="actions-title"] li a {
   text-align: center;
   justify-content: center;
-  padding: var(--spacing-md) var(--spacing-2xl);
 }
-
-/* reset width on edit links inside exercise list items */
-#exercise-list li a {
-  width: auto;
-}
-
-/* Workouts */
 section > a {
   background-color: var(--bg-colour-elements);
   border: var(--border-button);
   font-size: var(--font-size-smaller);
   color: var(--font-colour-bright);
 }
-
-.workout-tile {
+.workout-tile, #exercise-list li {
   background: var(--bg-colour-tile);
+  border-radius: var(--border-radius-base);
 }
-
 .duration {
   font-size: var(--font-size-smaller);
   color: var(--font-colour-secondary);
 }
-
-.rank {
-  align-self: center;
+.workout_title {
+  margin-bottom: var(--spacing-xs);
 }
-
-/* Workout title row with delete button */
-.workout_title_row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--spacing-md);
-}
-
-.delete-btn {
-  flex-shrink: 0;
-  background-color: transparent;
-  color: #ff4d4d;
-  border: 1px solid rgba(255, 77, 77, 0.4);
-  border-radius: var(--border-radius-base);
-  font-family: var(--font-sans-serif);
-  font-size: var(--font-size-smaller);
-  font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-base);
-  padding: var(--spacing-sm) var(--spacing-md);
-  cursor: pointer;
-}
-
-.delete-btn:hover,
-.delete-btn:focus-visible {
-  background-color: #ff4d4d;
-  color: var(--bg-colour);
-  outline: none;
-}
-
-/* remove button on individual exercises in workout details */
-.remove-btn {
-  background-color: transparent;
-  color: #ff4d4d;
-  border: 1px solid rgba(255, 77, 77, 0.4);
-  border-radius: var(--border-radius-base);
-  font-family: var(--font-sans-serif);
-  font-size: var(--font-size-smaller);
-  font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-base);
-  padding: var(--spacing-sm) var(--spacing-md);
-  cursor: pointer;
-}
-
-.remove-btn:hover,
-.remove-btn:focus-visible {
-  background-color: #ff4d4d;
-  color: var(--bg-colour);
-  outline: none;
-}
-
-/* add selected button on workout details */
-.action-btn {
-  background-color: var(--bg-button);
-  color: var(--font-colour-bright);
-  border: var(--border-button);
-  border-radius: var(--border-radius-base);
-  font-family: var(--font-sans-serif);
-  font-size: var(--font-size-smaller);
-  font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-base);
-  padding: var(--spacing-sm) var(--spacing-md);
-  cursor: pointer;
-  margin-top: var(--spacing-md);
-  display: block;
-}
-
-.action-btn:hover,
-.action-btn:focus-visible {
-  background-color: var(--font-colour-bright);
-  color: var(--bg-colour);
-  outline: none;
-}
-
-/* edit + remove buttons side by side */
-.exercise_detail_actions {
-  display: flex;
-  gap: var(--spacing-sm);
-  align-items: center;
-  flex-shrink: 0;
-}
-
-/* Exercises */
-#exercise-list li {
-  background: var(--bg-colour-tile);
-}
-
 #exercise-list p {
   font-size: var(--font-size-small);
 }
-
-.exercise_type {
-  font-size: var(--font-size-smaller);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-less);
-  text-transform: uppercase;
-  color: var(--font-colour-secondary);
+#exercise-list li a {
+  width: auto;
 }
-
-#exercise-list a {
-  font-size: var(--font-size-smaller);
-  letter-spacing: var(--letter-spacing-less);
-  font-weight: var(--font-weight-bold);
+nav {
+  z-index: var(--z-nav);
+  border-radius: var(--border-radius-top);
 }
-
 nav a {
   font-size: var(--font-size-smaller);
   font-weight: var(--font-weight-bold);
@@ -330,27 +171,39 @@ nav a {
   text-transform: uppercase;
   border: none;
 }
-
 form label {
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-base);
 }
-
-/* Required field asterisk */
 label:has(+ input[required])::after,
-label:has(+ select[required])::after {
+label:has(+ select[required])::after,
+label:has(+ textarea[required])::after {
   content: " *";
   color: var(--font-colour-bright);
 }
-
-/* Narrow number inputs */
+form input:not([type="submit"]):not([type="checkbox"]),
+form select,
+form textarea {
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-small);
+    background: var(--bg-colour-tile);
+    color: var(--font-colour-primary);
+    font-weight: var(--font-weight-medium);
+    border: var(--border-button);
+}
+form textarea {
+  font-family: var(--font-sans-serif);
+  resize: none;
+  overflow: hidden;
+}
+form select {
+    padding: var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg) var(--spacing-md);
+}
 input.input-narrow {
   width: clamp(6rem, 30vw, 8rem);
 }
-
-/* Number input spinner buttons */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
@@ -360,146 +213,117 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 1.2rem;
   height: 1.4rem;
 }
-
-form input,
-form select {
-    border-radius: var(--border-radius-base);
-    font-size: var(--font-size-small);
-    background: var(--bg-colour-tile);
-    color: var(--font-colour-primary);
-    font-weight: var(--font-weight-medium);
-    border: var(--border-button);
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: var(--border-button);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
 }
-
-form input:not([type="submit"]):not([type="checkbox"]):not([type="file"]),
-form textarea {
-    padding: var(--spacing-lg) var(--spacing-md);
+input[type="checkbox"]:hover,
+input[type="checkbox"]:focus-visible,
+input[type="checkbox"]:focus-within {
+  background-color: var(--font-colour-bright);
 }
-
-/* required asterisk also works for textareas */
-label:has(+ textarea[required])::after {
-  content: " *";
+input[type="checkbox"]:checked {
+  background-color: var(--bg-colour-tile);
+}
+input[type="checkbox"]:checked:hover,
+input[type="checkbox"]:checked:focus-visible,
+input[type="checkbox"]:checked:focus-within {
+  background-color: var(--bg-colour-tile);
+}
+input[type="checkbox"]:checked::after {
+  content: "✓";
   color: var(--font-colour-bright);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
 }
-
-form select {
-    padding: var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg) var(--spacing-md);
-}
-
-form input[type="submit"] {
+form input[type="submit"], .action-btn, .delete-btn, .remove-btn {
+    border: var(--border-button);
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
     font-family: var(--font-sans-serif);
+    font-size: var(--font-size-smaller);
     font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-base);
+}
+form input[type="submit"], .action-btn {
     background-color: var(--bg-button);
     color: var(--font-colour-bright);
 }
-/* inline validation error on the booking form */
+.delete-btn, .remove-btn {
+  background-color: transparent;
+  color: #ff4d4d;
+  border-color: rgba(255, 77, 77, 0.4);
+}
+.delete-btn:hover, .remove-btn:hover,
+.delete-btn:focus-visible, .remove-btn:focus-visible {
+  background-color: #ff4d4d !important;
+  color: var(--bg-colour) !important;
+  outline: none;
+}
+.exercise_type_icon {
+  object-fit: contain;
+  filter: invert(88%) sepia(14%) saturate(350%) hue-rotate(148deg) brightness(100%);
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
 .form-error {
-  margin-top: var(--spacing-md);
   font-size: var(--font-size-small);
   color: var(--font-colour-bright);
   border-left: 3px solid var(--font-colour-bright);
-  padding: var(--spacing-sm) var(--spacing-md);
   background: var(--bg-colour-tile);
   border-radius: var(--border-radius-small);
-  width: 90%;
 }
-
-/* prototype notice shown after booking form is submitted */
 #prototype_notice {
-  margin-top: var(--spacing-md);
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-medium);
   color: var(--font-colour-primary);
   border-left: 4px solid var(--bg-button);
-  padding: var(--spacing-md) var(--spacing-lg);
   background: var(--bg-colour-tile);
   border-radius: var(--border-radius-small);
-  width: 90%;
 }
-
-/* cancel link styled as a subtle secondary button */
 .cancel-btn {
-  display: inline-block;
   font-size: var(--font-size-smaller);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-base);
   color: var(--font-colour-secondary);
   border: 1px solid transparent;
-  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-base);
-  margin-top: var(--spacing-sm);
 }
-
 .cancel-btn:hover,
 .cancel-btn:focus-visible {
   color: var(--font-colour-bright) !important;
-  background: var(--bg-colour-tile);
+  background: var(--bg-colour-tile) !important;
   border-color: var(--bg-colour-tile);
 }
-
-/* Media preview */
-#exercise_media_preview img,
-#exercise_media_preview video,
-#workout_media_preview img,
-#workout_media_preview video {
-  width: 100%;
-  border-radius: var(--border-radius-base);
-  margin-top: var(--spacing-sm);
-}
-/* Workout exercise checkbox rows */
-.checkbox_row {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-  padding: var(--spacing-sm) 0;
-}
-/* Workout details media */
-.workout_media_detail {
-  margin-bottom: var(--spacing-2xl);
-}
-
-.workout_media_detail img,
-.workout_media_detail video {
-  width: 100%;
+#exercise_media_preview img, #exercise_media_preview video,
+#workout_media_preview img, #workout_media_preview video,
+.workout_media_detail img, .workout_media_detail video,
+.exercise_media_detail img, .exercise_media_detail video {
   border-radius: var(--border-radius-base);
 }
-
-/* Exercise media inside the details list */
-.exercise_media_detail {
-  width: 100%;
-  margin-top: var(--spacing-sm);
-}
-
-.exercise_media_detail img,
-.exercise_media_detail video {
-  width: 100%;
+.exercise_media_detail img, .exercise_media_detail video {
   border-radius: var(--border-radius-small);
 }
-
-#exercise-list li:has(.exercise_detail_row) {
-  flex-direction: column;
-  align-items: stretch;
-}
-
-#exercise-list li:has(.exercise_media_detail) {
-  flex-wrap: wrap;
-}
-/* File input — text area looks like a text field, button styled separately */
 input[type="file"] {
   display: block;
-  width: 90%;
   background: var(--bg-colour-tile);
   color: var(--font-colour-primary);
   border: var(--border-button);
   border-radius: var(--border-radius-base);
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: 0.6rem var(--spacing-md);
   font-family: var(--font-sans-serif);
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-medium);
   cursor: default;
 }
-
 input[type="file"]::file-selector-button {
   background-color: var(--bg-button);
   border: none;
@@ -512,48 +336,25 @@ input[type="file"]::file-selector-button {
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-base);
   cursor: pointer;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: 0.6rem var(--spacing-md);
   margin-right: var(--spacing-md);
 }
-
 input[type="file"]::file-selector-button:hover {
   background-color: var(--font-colour-bright);
   color: var(--bg-colour);
 }
-
-/* Exercise detail row layout */
-.exercise_detail_row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+.exercise_type {
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-less);
+  text-transform: uppercase;
+  color: var(--font-colour-secondary);
 }
-
-.exercise_detail_info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-}
-
-/* Exercise stats and notes on workout details */
-.exercise_stats,
-.exercise_notes {
-  width: 100%;
+.exercise_stats, .exercise_notes {
   font-size: var(--font-size-smaller);
   color: var(--font-colour-secondary);
-  margin-top: var(--spacing-xs);
 }
-
-/* small screens — shrink header so logo and booking link fit on one line */
 @media (max-width: 380px) {
-  header a:first-child {
-    font-size: var(--font-size-medium);
-  }
-  header a img {
-    width: 22px;
-  }
-  header a.booking {
-    font-size: 0.7rem;
-    padding: var(--spacing-sm);
-  }
+  header a:first-child { font-size: var(--font-size-medium); }
+  header a.booking { font-size: 0.7rem; }
 }

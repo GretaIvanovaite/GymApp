@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GymApp — Create a new workout" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GymApp — Create a new workout">
   <title>GymApp — Create workout</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
-
-  <!-- skip link for keyboard users -->
   <a href="#main-content" class="skip-link">skip to main content</a>
-
-  <header role="banner">
-    <!-- default and hover logos swapped via css -->
+  <header>
     <a href="index.html">GymApp
       <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
       <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
     </a>
     <a href="book-consultation.html" class="booking">Book consultation</a>
   </header>
-
   <main id="main-content">
-    <section>
-      <h1>Create workout</h1>
+    <section aria-labelledby="create-workout-title">
+      <h1 id="create-workout-title">Create workout</h1>
     </section>
-
     <form id="create_workout">
       <label for="workout_name">Workout name</label>
       <textarea id="workout_name" class="auto-resize" placeholder="Full body, Leg day..." required autocomplete="off" rows="1"></textarea>
-
-      <!-- exercise checkboxes populated dynamically from indexeddb -->
       <fieldset>
         <legend>Exercises</legend>
         <div id="exercise_checkboxes" aria-live="polite"></div>
       </fieldset>
-
       <label for="workout_media">Photo / Video</label>
       <input id="workout_media" type="file" accept="image/*,video/*">
       <div id="workout_media_preview" aria-live="polite"></div>
-
       <p id="workout_form_error" hidden role="alert" class="form-error">Please enter a workout name.</p>
       <div class="form-actions">
         <a href="index.html" class="cancel-btn">Cancel</a>
@@ -49,13 +39,11 @@
       </div>
     </form>
   </main>
-
   <nav aria-label="main navigation">
     <a href="index.html">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html" aria-current="page">Add workout</a>
   </nav>
-
   <script src="storage.js"></script>
 </body>
 </html>

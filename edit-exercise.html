@@ -1,37 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GymApp — Edit an exercise" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GymApp — Edit an exercise">
   <title>GymApp — Edit Exercise</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
-
-  <!-- skip link for keyboard users -->
   <a href="#main-content" class="skip-link">skip to main content</a>
-
-  <header role="banner">
-    <!-- default and hover logos swapped via css -->
+  <header>
     <a href="index.html">GymApp
       <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
       <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
     </a>
     <a href="book-consultation.html" class="booking">Book consultation</a>
   </header>
-
   <main id="main-content">
-    <section>
-      <h1>Edit exercise</h1>
+    <section aria-labelledby="edit-exercise-title">
+      <h1 id="edit-exercise-title">Edit exercise</h1>
     </section>
-
     <form id="create_exercise" novalidate>
       <label for="exercise_name">Exercise name</label>
       <textarea id="exercise_name" class="auto-resize" placeholder="Push ups, Treadmill run, Deadlifts..." required autocomplete="off" rows="1"></textarea>
-
       <label for="exercise_type">Type of exercise</label>
       <select id="exercise_type" required>
         <option value="">Exercise type</option>
@@ -42,9 +35,6 @@
         <option value="hiit">HIIT</option>
         <option value="mobility">Mobility</option>
       </select>
-
-      <!-- type-conditional fieldsets: hidden removes them from the accessibility tree entirely -->
-
       <fieldset class="type-fields" data-types="calisthenics weights core" hidden>
         <legend class="sr-only">sets and reps</legend>
         <label for="sets">Sets</label>
@@ -54,19 +44,16 @@
         <label for="rest_time">Rest time (seconds)</label>
         <input type="number" id="rest_time" name="rest_time" min="0" max="600" placeholder="e.g. 90" class="input-narrow">
       </fieldset>
-
       <fieldset class="type-fields" data-types="weights" hidden>
         <legend class="sr-only">weight</legend>
         <label for="weight_kg">Weight (kg)</label>
         <input type="number" id="weight_kg" name="weight_kg" min="0" max="1000" step="0.5" placeholder="e.g. 60" class="input-narrow">
       </fieldset>
-
       <fieldset class="type-fields" data-types="core" hidden>
         <legend class="sr-only">hold time</legend>
         <label for="hold_time">Hold time (seconds)</label>
         <input type="number" id="hold_time" name="hold_time" min="0" max="3600" placeholder="e.g. 30" class="input-narrow">
       </fieldset>
-
       <fieldset class="type-fields" data-types="cardio" hidden>
         <legend class="sr-only">cardio details</legend>
         <label for="duration">Duration (minutes)</label>
@@ -83,7 +70,6 @@
           <option value="high">High</option>
         </select>
       </fieldset>
-
       <fieldset class="type-fields" data-types="hiit" hidden>
         <legend class="sr-only">interval settings</legend>
         <label for="rounds">Rounds</label>
@@ -97,7 +83,6 @@
           <label for="includes_weights">Includes weights</label>
         </div>
       </fieldset>
-
       <fieldset class="type-fields" data-types="mobility" hidden>
         <legend class="sr-only">mobility details</legend>
         <label for="body_part">Body part focus</label>
@@ -122,14 +107,11 @@
           <option value="deep">Deep</option>
         </select>
       </fieldset>
-
       <label for="exercise_notes">Notes</label>
       <textarea id="exercise_notes" class="auto-resize" placeholder="Any notes..." rows="1"></textarea>
-
       <label for="exercise_media">Photo / Video</label>
       <input id="exercise_media" type="file" accept="image/*,video/*">
       <div id="exercise_media_preview" aria-live="polite"></div>
-
       <p id="exercise_form_error" hidden role="alert" class="form-error">Please fill in all required fields.</p>
       <div class="form-actions">
         <a href="index.html" class="cancel-btn">Cancel</a>
@@ -137,13 +119,11 @@
       </div>
     </form>
   </main>
-
   <nav aria-label="main navigation">
     <a href="index.html">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>
   </nav>
-
   <script src="storage.js"></script>
 </body>
 </html>

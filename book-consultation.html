@@ -1,51 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GymApp — Book a consultation with a trainer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GymApp — Book a consultation with a trainer">
   <title>GymApp — Book Consultation</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
-
-  <!-- skip link for keyboard users -->
   <a href="#main-content" class="skip-link">skip to main content</a>
-
-  <header role="banner">
-    <!-- default and hover logos swapped via css -->
+  <header>
     <a href="index.html">GymApp
       <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
       <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
     </a>
     <a href="book-consultation.html" class="booking" aria-current="page">Book consultation</a>
   </header>
-
   <main id="main-content">
-    <section>
-      <h1>Book a consultation</h1>
+    <section aria-labelledby="booking-title">
+      <h1 id="booking-title">Book a consultation</h1>
     </section>
-
     <form id="consultation_form" novalidate>
       <label for="name">Your name</label>
       <input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name">
-
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
-
       <label for="trainer">Trainer</label>
       <select id="trainer" name="trainer" required>
         <option value="">Select a trainer</option>
         <option value="alex">Alex — Strength &amp; Conditioning</option>
         <option value="morgan">Morgan — Calisthenics</option>
-        <option value="jordan">Jordan — Mobility &amp; Recovery</option>
+        <option value="jordan">Jordan - Mobility & Recovery</option>
       </select>
-
       <label for="date">Preferred date</label>
       <input type="date" id="date" name="date" required>
-
       <label for="time">Preferred time</label>
       <select id="time" name="time">
         <option value="">Select a time</option>
@@ -56,10 +46,8 @@
         <option value="1500">15:00</option>
         <option value="1600">16:00</option>
       </select>
-
       <label for="notes">Notes</label>
       <textarea id="notes" name="notes" class="auto-resize" placeholder="Any injuries, goals or questions..." rows="1"></textarea>
-
       <p id="form_error" hidden role="alert" class="form-error">Please fill in all required fields: name, email, trainer, and preferred date.</p>
       <p id="prototype_notice" hidden aria-live="polite">This is a prototype student project - no data is sent and no booking is made.</p>
       <div class="form-actions">
@@ -68,32 +56,24 @@
       </div>
     </form>
   </main>
-
   <nav aria-label="main navigation">
     <a href="index.html">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>
   </nav>
-
   <script>
-    /* intercept consultation form — show inline error or prototype notice */
     var consultForm = document.getElementById("consultation_form");
     var errorEl     = document.getElementById("form_error");
     var dateInput   = document.getElementById("date");
-
-    /* restrict date picker to today and up to 2 years ahead */
     var today   = new Date();
     var maxDate = new Date(today.getFullYear() + 2, today.getMonth(), today.getDate());
     dateInput.min = today.toISOString().split("T")[0];
     dateInput.max = maxDate.toISOString().split("T")[0];
-
-    /* returns an error string if something is wrong, or null if all is valid */
     function getFormError() {
       var name    = document.getElementById("name").value.trim();
       var email   = document.getElementById("email").value.trim();
       var trainer = document.getElementById("trainer").value;
       var date    = dateInput.value;
-
       if (!name || !email || !trainer || !date) {
         return "Please fill in all required fields: name, email, trainer, and preferred date.";
       }
@@ -105,7 +85,6 @@
       }
       return null;
     }
-
     consultForm.addEventListener("submit", function (e) {
       e.preventDefault();
       var err = getFormError();
@@ -119,11 +98,8 @@
       notice.hidden = false;
       notice.scrollIntoView({ behavior: "smooth", block: "center" });
     });
-
-    /* update or clear error message live as the user fills in fields */
     consultForm.addEventListener("input",  function () { if (!getFormError()) errorEl.hidden = true; });
     consultForm.addEventListener("change", function () { if (!getFormError()) errorEl.hidden = true; });
   </script>
-
 </body>
 </html>

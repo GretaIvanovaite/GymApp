@@ -374,10 +374,28 @@ if (exerciseForm) {
 
   exerciseForm.addEventListener("submit", async function(e) {
     e.preventDefault();
+    
+    // reset validation state
+    var requiredFields = exerciseForm.querySelectorAll("[required]");
+    requiredFields.forEach(function(field) {
+      field.removeAttribute("aria-invalid");
+      field.removeAttribute("aria-describedby");
+    });
+
     if (!exerciseForm.checkValidity()) {
-      if (exerciseErrorEl) exerciseErrorEl.hidden = false;
+      if (exerciseErrorEl) {
+        exerciseErrorEl.hidden = false;
+        // set aria-invalid and link to error message for failing fields
+        requiredFields.forEach(function(field) {
+          if (!field.checkValidity()) {
+            field.setAttribute("aria-invalid", "true");
+            field.setAttribute("aria-describedby", "exercise_form_error");
+          }
+        });
+      }
       return;
     }
+    
     if (exerciseErrorEl) exerciseErrorEl.hidden = true;
     var data = {
       name:               document.getElementById("exercise_name")?.value || "",
@@ -422,7 +440,18 @@ if (exerciseForm) {
     } else {
       await saveRecord("exercises", data);
     }
-    window.location.href = "index.html";
+
+    // announce success before redirect
+    if (exerciseErrorEl) {
+      exerciseErrorEl.className = "form-success";
+      exerciseErrorEl.textContent = editId ? "Changes saved successfully! Redirecting..." : "Exercise added successfully! Redirecting...";
+      exerciseErrorEl.setAttribute("role", "status");
+      exerciseErrorEl.hidden = false;
+    }
+
+    setTimeout(function() {
+      window.location.href = "index.html";
+    }, 1000);
   });
 
   /* hide exercise error as soon as required fields are valid */
@@ -473,8 +502,21 @@ if (workoutForm) {
   workoutForm.addEventListener("submit", async function(e) {
     e.preventDefault();
     var nameInput = document.getElementById("workout_name");
+    
+    // reset validation state
+    if (nameInput) {
+      nameInput.removeAttribute("aria-invalid");
+      nameInput.removeAttribute("aria-describedby");
+    }
+
     if (!nameInput || !nameInput.value.trim()) {
-      if (workoutErrorEl) workoutErrorEl.hidden = false;
+      if (workoutErrorEl) {
+        workoutErrorEl.hidden = false;
+        if (nameInput) {
+          nameInput.setAttribute("aria-invalid", "true");
+          nameInput.setAttribute("aria-describedby", "workout_form_error");
+        }
+      }
       return;
     }
     if (workoutErrorEl) workoutErrorEl.hidden = true;
@@ -490,13 +532,28 @@ if (workoutForm) {
       data.media     = await readFileAsDataURL(file);
     }
     await saveRecord("workouts", data);
-    window.location.href = "index.html";
+    
+    // announce success before redirect
+    if (workoutErrorEl) {
+      workoutErrorEl.className = "form-success";
+      workoutErrorEl.textContent = "Workout saved successfully! Redirecting...";
+      workoutErrorEl.setAttribute("role", "status");
+      workoutErrorEl.hidden = false;
+    }
+    
+    setTimeout(function() {
+      window.location.href = "index.html";
+    }, 1000);
   });
 
-  /* hide workout error as soon as a name is typed */
+  /* hide workout error as soon as a name is typed and reset aria state */
   var workoutNameEl = document.getElementById("workout_name");
   if (workoutNameEl) workoutNameEl.addEventListener("input", function() {
-    if (workoutNameEl.value.trim() && workoutErrorEl) workoutErrorEl.hidden = true;
+    if (workoutNameEl.value.trim()) {
+      if (workoutErrorEl) workoutErrorEl.hidden = true;
+      workoutNameEl.removeAttribute("aria-invalid");
+      workoutNameEl.removeAttribute("aria-describedby");
+    }
   });
 }
 

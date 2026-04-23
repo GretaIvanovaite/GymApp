@@ -1,62 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GymApp — Your digital workout planner" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GymApp — Your digital workout planner">
   <title>GymApp — Home</title>
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
-
-  <!-- skip link for keyboard users -->
   <a href="#main-content" class="skip-link">skip to main content</a>
-
-  <header role="banner">
-    <!-- default and hover logos swapped via css -->
+  <header>
     <a href="index.html" aria-current="page">GymApp
       <img src="assets/logo.png" alt="GymApp logo - barbell with a clock" id="logo_hover" width="30">
       <img src="assets/logo_bright.png" alt="" id="logo_default" width="30">
     </a>
     <a href="book-consultation.html" class="booking">Book consultation</a>
   </header>
-
   <main id="main-content">
-    <section aria-label="greeting">
-      <h1>Let's get to it!</h1>
+    <section aria-labelledby="greeting-title">
+      <h1 id="greeting-title">Let's get to it!</h1>
     </section>
-
-    <section aria-label="quick actions">
-      <h2>Quick actions</h2>
+    <section aria-labelledby="actions-title">
+      <h2 id="actions-title">Quick actions</h2>
       <ul>
         <li><a href="add-exercise.html">New Exercise</a></li>
         <li><a href="create-workout.html">New Workout</a></li>
       </ul>
     </section>
-
-    <section aria-label="workout schedule">
-      <h2>Workout schedule</h2>
+    <section aria-labelledby="schedule-title">
+      <h2 id="schedule-title">Workout schedule</h2>
       <a href="create-workout.html">Create</a>
-      <!-- dynamically populated by storage.js, aria-live announces changes to screen readers -->
-      <ul id="workout-list" aria-live="polite"><li><p>No workouts yet.</p></li></ul>
+      <ul id="workout-list" aria-live="polite">
+        <li><p>No workouts yet.</p></li>
+      </ul>
     </section>
-
-    <section aria-label="exercise library">
-      <h2>Exercise Library</h2>
+    <section aria-labelledby="library-title">
+      <h2 id="library-title">Exercise Library</h2>
       <a href="add-exercise.html">Add</a>
-      <!-- dynamically populated by storage.js, aria-live announces changes to screen readers -->
-      <ul id="exercise-list" aria-live="polite"><li><p>No exercises yet.</p></li></ul>
+      <ul id="exercise-list" aria-live="polite">
+        <li><p>No exercises yet.</p></li>
+      </ul>
     </section>
   </main>
-
   <nav aria-label="main navigation">
     <a href="index.html" aria-current="page">Home</a>
     <a href="add-exercise.html">Add exercise</a>
     <a href="create-workout.html">Add workout</a>
   </nav>
-
   <script src="storage.js"></script>
 </body>
 </html>
